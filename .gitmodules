@@ -1,0 +1,20 @@
+[submodule "omsagent"]
+	path = omsagent
+	url = git@github.com:MSFTOSSMgmt/omsagent.git
+	branch = dev-git
+[submodule "opsmgr"]
+	path = opsmgr
+	url = git@github.com:MSFTOSSMgmt/SCXcore.git
+	branch = dev-git
+[submodule "pal"]
+	path = pal
+	url = git@github.com:MSFTOSSMgmt/pal.git
+	branch = dev-git
+[submodule "omi"]
+	path = omi
+	url = git@github.com:MSFTOSSMgmt/omi.git
+	branch = dev-git
+[submodule "dsc"]
+	path = dsc
+	url = git@github.com:MSFTOSSMgmt/dsc.git
+	branch = dev-git
