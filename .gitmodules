@@ -1,7 +1,7 @@
 [submodule "omsagent"]
 	path = omsagent
 	url = git@github.com:MSFTOSSMgmt/omsagent.git
-	branch = dev-git
+	branch = develop
 [submodule "opsmgr"]
 	path = opsmgr
 	url = git@github.com:MSFTOSSMgmt/SCXcore.git
@@ -17,4 +17,4 @@
 [submodule "dsc"]
 	path = dsc
 	url = git@github.com:MSFTOSSMgmt/dsc.git
-	branch = dev-git
+	branch = develop
