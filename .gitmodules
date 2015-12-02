@@ -5,15 +5,15 @@
 [submodule "opsmgr"]
 	path = opsmgr
 	url = git@github.com:MSFTOSSMgmt/SCXcore.git
-	branch = dev-git
+	branch = develop
 [submodule "pal"]
 	path = pal
 	url = git@github.com:MSFTOSSMgmt/pal.git
-	branch = dev-git
+	branch = develop
 [submodule "omi"]
 	path = omi
 	url = git@github.com:MSFTOSSMgmt/omi.git
-	branch = dev-git
+	branch = develop
 [submodule "dsc"]
 	path = dsc
 	url = git@github.com:MSFTOSSMgmt/dsc.git
