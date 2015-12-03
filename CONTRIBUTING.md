@@ -1,9 +1,11 @@
 #Contributing
 
 ### Setup
-- Fork the repository recursively to get the submodules:</br>```git clone --recursive git@github.com:MSFTOSSMgmt/bld-omsagent.git```
-- If you are contributing in a submodule (dsc, omi, omsagent, opsmgr, pal) chekout the *develop* branch since it is where active development is being made:</br>```git fetch; git checkout develop```
-- From the develop branch, create a feature branch where you will add your contribution:</br>```git checkout -b <branch-name>```
+- Fork the repository recursively to get the submodules:<br>```git clone --recursive git@github.com:MSFTOSSMgmt/bld-omsagent.git```
+- If you are contributing in a submodule (dsc, omi, omsagent, opsmgr, pal) chekout the *develop* branch since it is where active development is being made:<br>```git fetch; git checkout develop```
+- From the develop branch, create a feature branch where you will add your contribution.<br>
+  By convention, for feature branch names, we use the format ```<username>-<feature_name>```<br>
+  ```git checkout -b <branch-name>```
 
 ### Code
 - Make the changes as needed, test them out
@@ -12,7 +14,7 @@
   git add <changed files>
   git commit -m "commit message"
 ```
-- Push the changes to the server:</br>```git push```
+- Push the changes to the server:<br>```git push```
 
 ### Review
 - On [github](https://github.com/MSFTOSSMgmt/bld-omsagent), create a new pull request. That page should only show your changes. Be sure there is a relevant subject for the pull request. In the details, include the line "@MSFTOSSMgmt/omsdevs" and any other comments relevant for the reviewers.
@@ -20,13 +22,13 @@
 
 ### Merge
 Once the pull request is reviewed, it can be merged to the develop branch
-- Go to the development branch:</br>```git checkout develop```
-- Merge your changes to the development branch:</br>```git merge <branch-name>```
-- Push the merge to github:</br>```git push```
+- Go to the development branch:<br>```git checkout develop```
+- Merge your changes to the development branch:<br>```git merge <branch-name>```
+- Push the merge to github:<br>```git push```
 
 Once the merged changes are pushed to the server, the pull request on github will be automatically closed.
 
 ### Cleanup
 You should clean up your old branches. To do so:
-- Delete remote branch:</br>```git push origin --delete <branch-name>```
-- Delete local branch:</br>```git branch -d <branch-name>```
+- Delete remote branch:<br>```git push origin --delete <branch-name>```
+- Delete local branch:<br>```git branch -d <branch-name>```
