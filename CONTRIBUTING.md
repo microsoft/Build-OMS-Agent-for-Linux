@@ -22,20 +22,17 @@
 - Reviewers can sign off by leaving a comment on the *conversation* tab of the pull request.
 
 ### Merge
-Once the pull request is reviewed, it can be merged to the develop branch.
-Here are two ways to merge:
+Once the pull request is reviewed, it can be merged to the develop branch. While github
+itself can perform the merge easily, it uses the --no-ff option (no fast forward), resulting
+in somewhat messy git logs. As a result, we do not suggest use of github for merging your
+changes. Instead, we recommend use of the command line.
 
-#### 1. Command line
+- Merge latest changes to your feature branch from development branch:<br>```git merge develop```
+<br>Resolve any merge conflicts that may be necessary. If changes are necessary,
+be certain to commit them to your feature branch.
 - Go to the development branch:<br>```git checkout develop```
 - Merge your changes to the development branch:<br>```git merge <branch-name>```
 - Push the merge to github:<br>```git push```
-
-#### 2. Github web interface
-- On the pull request page click *merge pull request*
-- Confirm you want to merge
-- Delete the feature branch
-
-Once the merged changes are pushed to the server, the pull request on github will be automatically closed.
 
 ### Cleanup
 You should clean up your old branches. To do so:
