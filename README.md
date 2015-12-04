@@ -1,3 +1,5 @@
+# Operations Management Suite Linux Agent
+
 ### To set up machine to build OMS
 
 A "shell bundle" is a distribution mechanism for the OMS agent. A shell
@@ -117,6 +119,7 @@ following:
 cd omsagent/build
 ./configure
 make
+make test
 ```
 
 Note that the ```configure``` script takes a variety of options. You can
