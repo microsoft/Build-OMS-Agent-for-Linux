@@ -21,13 +21,6 @@
 - If you need to make new changes based on review, you can just update your branch with further commits and ask for additional reviews.
 - Reviewers can sign off by leaving a comment on the *conversation* tab of the pull request.
 
-Merge
-
-Merges can be done two ways:
- 1. (Existing way via command line)
- 2. (Via the github WWW site)
-
-
 ### Merge
 Once the pull request is reviewed, it can be merged to the develop branch.
 Here are two ways to merge:
