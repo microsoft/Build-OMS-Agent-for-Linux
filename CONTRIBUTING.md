@@ -48,3 +48,19 @@ Once the merged changes are pushed to the server, the pull request on github wil
 You should clean up your old branches. To do so:
 - Delete remote branch:<br>```git push origin --delete <branch-name>```
 - Delete local branch:<br>```git branch -d <branch-name>```
+
+### Useful Commands
+
+#### Managing submodules
+From the base directory it is easy to manage all the submodule with these commands:
+
+```shell
+# Switch to the develop branch
+git submodule foreach git checkout develop
+# Pull latest changes
+git submodule foreach git pull
+# Deletes all stale remote-tracking branches
+git submodule foreach git remote prune origin
+# Show all the branches
+git submodule foreach git branch -vv
+```
