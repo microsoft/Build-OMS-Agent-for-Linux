@@ -6,6 +6,15 @@
 - From the develop branch, create a feature branch where you will add your contribution.<br>
   By convention, for feature branch names, we use the format ```<username>-<feature_name>```<br>
   ```git checkout -b <branch-name>```
+- Use of 'git rebase' is suggested to keep feature branches up to date. This works
+  much better if you issue the following configuration changes to git's global configuration:
+```
+ git config --global rerere.enabled true
+ git config --global rerere.autoUpdate true
+```
+ See [rerere documentaiton] (https://git-scm.com/docs/git-rerere) and
+ [rebasing documentation] (https://www.git-scm.com/book/en/v2/Git-Branching-Rebasing)
+ for further details.
 
 ### Code
 - Make the changes as needed, test them out
@@ -17,7 +26,10 @@
 - Push the changes to the server:<br>```git push```
 
 ### Review
-- On [github](https://github.com/MSFTOSSMgmt/bld-omsagent), create a new pull request. That page should only show your changes. Be sure there is a relevant subject for the pull request. In the details, include the line "@MSFTOSSMgmt/omsdevs" and any other comments relevant for the reviewers.
+- On [github](https://github.com/MSFTOSSMgmt/bld-omsagent), create a new pull request.
+That page should only show your changes. Be sure there is a relevant subject for the
+pull request. In the details, include the line "@MSFTOSSMgmt/omsdevs" and any other
+comments relevant for the reviewers.
 - If you need to make new changes based on review, you can just update your branch with further commits and ask for additional reviews.
 - Reviewers can sign off by leaving a comment on the *conversation* tab of the pull request.
 
@@ -32,7 +44,7 @@ changes. Instead, we recommend use of the command line.
 git checkout develop
 git pull
 git checkout <branch-name>
-git merge develop
+git rebase develop
 ```
 <br>Resolve any merge conflicts that may be necessary. If changes are necessary,
 be certain to commit them to your feature branch.
