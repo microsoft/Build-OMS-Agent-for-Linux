@@ -137,3 +137,19 @@ Note that the build will build multiple versions of Ruby (one for unit test,
 only built once, even after "make distclean"), and then one or two versions
 depending if you're building for a shell bundle or not. Bottom line: The
 first build is always slower than subsequent builds.
+
+### Common Problems
+
+##### Improper clone of project
+
+If you get an error during the Ruby build like:
+```
+downloader.rb:180: private method `class_variable_set' called for Downloader:Class (NoMethodError)
+configure: error: cannot run /bin/sh tool/config.sub
+make: *** [/usr/local/ruby-2.2.0a] Error 127
+```
+While this points to an issue where your system version of Ruby is too old
+(strangely enough, Ruby is required to build Ruby), the root source of the
+issue is that you didn't clone the repository recursively. Please read
+[the documentation] (README.md#to-check-out-source-code-repository) for
+details on how to cone the repository.
