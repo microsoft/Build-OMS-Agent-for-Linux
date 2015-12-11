@@ -110,7 +110,7 @@ The basic steps are:
 1. [Create an SSH key for github] (https://help.github.com/articles/generating-ssh-keys/)
 2. Configure your SSH program to act as an SSH agent. Our team uses a
 variety of SSH programs. Some examples are:
-  1. [Putty] (http://www.chiark.greenend.org.uk/~sgtatham/putty/)
+  1. [Putty] (http://www.chiark.greenend.org.uk/~sgtatham/putty/), [Using Pageant](http://the.earth.li/~sgtatham/putty/0.58/htmldoc/Chapter9.html)
   2. [SecureCRT](https://www.vandyke.com/products/securecrt/index.html)/[SecureFX]
      (https://www.vandyke.com/products/securefx/index.html) bundle
   3. [MobaXterm] (http://mobaxterm.mobatek.net/), [Configure MobaXterm] (CONFIGURE-MobaXterm.md)
