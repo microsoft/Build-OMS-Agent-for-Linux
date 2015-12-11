@@ -113,8 +113,7 @@ variety of SSH programs. Some examples are:
   1. [Putty] (http://www.chiark.greenend.org.uk/~sgtatham/putty/)
   2. [SecureCRT](https://www.vandyke.com/products/securecrt/index.html)/[SecureFX]
      (https://www.vandyke.com/products/securefx/index.html) bundle
-  3. [MobaXterm] (http://mobaxterm.mobatek.net/), [Configure MobaXterm]
-(https://github.com/MSFTOSSMgmt/bld-omsagent/blob/jeff-mobaxterm/CONFIGURE-MobaXterm.md)
+  3. [MobaXterm] (http://mobaxterm.mobatek.net/), [Configure MobaXterm] (CONFIGURE-MobaXterm.md)
 
 Other SSH programs exist as well, or you can use the
 [SSH Agent] (http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-6.html)
