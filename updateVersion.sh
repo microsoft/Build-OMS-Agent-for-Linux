@@ -3,6 +3,9 @@
 # Update the version file each day for the daily build
 #
 
+# Exit on error
+set -e
+
 # Parsing logic
 
 usage()
@@ -78,8 +81,8 @@ if [ $P_INCREMENT -ne 0 ]; then
     VERSION_NEW=$(( $VERSION_OLD + 1 ))
     DATE_NEW=`date +%Y%m%d`
 
-    sed -ri "s/(^[A-Z]*_BUILDVERSION_BUILDNR)=.*/\1=$VERSION_NEW/" $VERSION_FILE
-    sed -ri "s/(^[A-Z]*_BUILDVERSION_DATE)=.*/\1=$DATE_NEW/" $VERSION_FILE
+    perl -i -pe "s/(^[A-Z]*_BUILDVERSION_BUILDNR)=.*/\1=$VERSION_NEW/" $VERSION_FILE
+    perl -i -pe "s/(^[A-Z]*_BUILDVERSION_DATE)=.*/\1=$DATE_NEW/" $VERSION_FILE
 
     if [ $VERBOSE -ne 0 ]; then
         echo "Updated version number, Was: $VERSION_OLD, Now $VERSION_NEW"
@@ -89,7 +92,7 @@ fi
 
 # Set release build
 if [ $P_RELEASE -ne 0 ]; then
-    sed -ri "s/^([A-Z]*_BUILDVERSION_STATUS)=.*/\1=Release_Build/" $VERSION_FILE
+    perl -i -pe "s/^([A-Z]*_BUILDVERSION_STATUS)=.*/\1=Release_Build/" $VERSION_FILE
     [ $VERBOSE -ne 0 ] && echo "Set BUILDVERSION_STATUS to \"Release_Build\""
     echo "WARNING: Never commit $VERSION_FILE with release build set!" 1>& 2
 fi
