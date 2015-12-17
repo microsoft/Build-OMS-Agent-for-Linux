@@ -1,6 +1,16 @@
 # Operations Management Suite Linux Agent
 
-### To set up machine to build OMS
+## Table of Contents
+- [Setting up a machine to build OMS](#setting-up-a-machine-to-build-oms)
+  - [Sudoers configuration](#sudoers-configuration)
+  - [Dependencies to build a native package](#dependencies-to-build-a-native-package)
+  - [Setting up a system to build a shell bundle](#setting-up-a-system-to-build-a-shell-bundle)
+  - [Preparing system tests](#preparing-system-tests)
+- [Cloning the repositories](#cloning-the-repositories)
+- [Building omsagent](#building-omsagent)
+- [Troubleshooting](#troubleshooting)
+
+### Setting up a machine to build OMS
 
 A "shell bundle" is a distribution mechanism for the OMS agent. A shell
 bundle is a shell script that has, as part of it, .RPM and .DEB native
@@ -17,7 +27,7 @@ was previously installed to "seed" the system), or
 Building a shell bundle is a superset of of setting up a system to
 build a local RPM, so we will cover that first.
 
-#### Notes on sudoers configuragion
+#### Sudoers configuration
 
 Two changes should be made to your sudoers configuration for omsagent to
 build properly. We suggest using ```visudo``` program unless you are
@@ -47,7 +57,7 @@ following sequence:
  If there is no password prompt, then /etc/sudoers was correctly modified.
 
 
-#### To set up system to build a native package
+#### Dependencies to build a native package
 
 Note that it's very nice to be able to use the [updatedns]
 (https://github.com/jeffaco/msft-updatedns) project to
@@ -79,7 +89,7 @@ bind-utils package isn't otherwise necessary.
  Similar methods would be utilized if building a Redhat system that is not
  registered for use for up2date.
 
-#### To set up system to build a shell bundle
+#### Setting up a system to build a shell bundle
 
 To build a shell bundle, we need and older Linux system (we typically use
 CentOS 5.0 for this), as binary images created with older Linux systems
@@ -93,11 +103,37 @@ link against.
 Once OpenSSL is set up, you need to configure omsagent to include the
 ```--enable-ulinux``` qualifier, like this:<br>```./configure --enable-ulinux``` 
 
-### To check out source code repository
+#### Preparing system tests
+**This section only aplies if you do not have read access to MSFTOSSMgmt.**
 
-To check out the source code repository, you need a command like:
+System tests communicate with the server. They require keys which may not be published.
+You may obtain your own keys for free by creating an account on
+[Microsoft Operations Management Suite](http://www.microsoft.com/en-us/server-cloud/operations-management-suite/why-oms.aspx)
+then get the keys from the settings view.
 
-```git clone --recursive git@github.com:MSFTOSSMgmt/bld-omsagent.git```
+Create the file `bld-omsagent/omsagent/test/config/systest.conf`
+with content like so:
+``` shell
+export TEST_WORKSPACE_ID=<id>
+export TEST_SHARED_KEY=<key>
+
+export TEST_WORKSPACE_ID_2=<id>
+export TEST_SHARED_KEY_2=<key>
+
+export TEST_PROXY_SETTING="http://proxyuser:proxypass@host:8080"
+```
+
+### Cloning the repositories
+
+If you have read access to MSFTOSSMgmt use the following.
+
+Otherwise, only run the first `git clone` command and refer to 
+[preparing system tests](#preparing-system-tests) if you want them to be run.
+
+```shell
+git clone --recursive git@github.com:MSFTOSSMgmt/bld-omsagent.git
+git clone git@github.com:MSFTOSSMgmt/omsagent-testconfig.git bld-omsagent/omsagent/test/config
+```
 
 Note that there are several subprojects, and authentication is a hassle
 unless you set up an SSH key via your github account. We would strongly
@@ -124,7 +160,7 @@ as well (although this only works for a single Linux session).
 The end result of this mechanism: You specify the password once when you
 start your SSH program or agent, and then you never type the passphrase again.
 
-### To build omsagent
+### Building omsagent
 
 From the bld-omsagent directory (created above from 'git clone', do the
 following:
@@ -152,9 +188,9 @@ only built once, even after "make distclean"), and then one or two versions
 depending if you're building for a shell bundle or not. Bottom line: The
 first build is always slower than subsequent builds.
 
-### Common Problems
+### Troubleshooting
 
-##### Improper clone of project
+#### Improper clone of project
 
 If you get an error during the Ruby build like:
 ```
@@ -165,5 +201,5 @@ make: *** [/usr/local/ruby-2.2.0a] Error 127
 While this points to an issue where your system version of Ruby is too old
 (strangely enough, Ruby is required to build Ruby), the root source of the
 issue is that you didn't clone the repository recursively. Please read
-[the documentation] (README.md#to-check-out-source-code-repository) for
+[the section on cloning the repositories](#cloning-the-repositories) for
 details on how to cone the repository.
