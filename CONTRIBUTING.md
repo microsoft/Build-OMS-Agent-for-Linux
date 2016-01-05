@@ -12,7 +12,7 @@
  git config --global rerere.enabled true
  git config --global rerere.autoUpdate true
 ```
- See [rerere documentaiton] (https://git-scm.com/docs/git-rerere) and
+ See [rerere documentation] (https://git-scm.com/docs/git-rerere) and
  [rebasing documentation] (https://www.git-scm.com/book/en/v2/Git-Branching-Rebasing)
  for further details.
 
@@ -26,7 +26,7 @@
 - Push the changes to the server:<br>```git push```
 
 ### Review
-- On [github](https://github.com/MSFTOSSMgmt/bld-omsagent), create a new pull request.
+- On [GitHub](https://github.com/MSFTOSSMgmt/bld-omsagent), create a new pull request.
 That page should only show your changes. Be sure there is a relevant subject for the
 pull request. In the details, include the line "@MSFTOSSMgmt/omsdevs" and any other
 comments relevant for the reviewers.
@@ -35,7 +35,7 @@ comments relevant for the reviewers.
 
 ### Merge
 Once the pull request is reviewed, it can be merged to the develop branch. While github
-itself can perform the merge easily, it uses the --no-ff option (no fast forward), resulting
+itself can perform the merge easily, it uses the `--no-ff` option (no fast-forward), resulting
 in somewhat messy git logs. As a result, we do not suggest use of github for merging your
 changes. Instead, we recommend use of the command line.
 
