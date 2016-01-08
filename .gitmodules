@@ -1,6 +1,6 @@
 [submodule "omsagent"]
 	path = omsagent
-	url = git@github.com:MSFTOSSMgmt/omsagent.git
+	url = git@github.com:Microsoft/OMS-Agent-for-Linux.git
 	branch = develop
 [submodule "opsmgr"]
 	path = opsmgr
@@ -16,5 +16,5 @@
 	branch = develop
 [submodule "dsc"]
 	path = dsc
-	url = git@github.com:MSFTOSSMgmt/dsc.git
+	url = git@github.com:Microsoft/PowerShell-DSC-for-Linux.git
 	branch = develop
