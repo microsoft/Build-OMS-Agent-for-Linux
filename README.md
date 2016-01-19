@@ -97,8 +97,8 @@ are generally upwards compatible when installed on newer Linux systems.
 
 A notable exception: We use the OpenSSL package, and we can't tell if
 we need OpenSSL v0.9.8 or OpenSSL v1.0.x. As a result, we have a [special
-process] (OPENSSL.md)  to build both both versions of OpenSSL that we can
-link against.
+process] (https://github.com/MSFTOSSMgmt/ostc-openssl/blob/master/README.md)
+to build both both versions of OpenSSL that we can link against.
 
 Once OpenSSL is set up, you need to configure omsagent to include the
 ```--enable-ulinux``` qualifier, like this:<br>```./configure --enable-ulinux``` 
