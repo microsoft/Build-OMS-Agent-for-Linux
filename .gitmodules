@@ -17,4 +17,4 @@
 [submodule "dsc"]
 	path = dsc
 	url = git@github.com:Microsoft/PowerShell-DSC-for-Linux.git
-	branch = develop
+	branch = master
