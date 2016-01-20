@@ -1,4 +1,4 @@
-##Git Tagging/Branching Proposal
+##Git Tagging/Branching Mechanisms
 
 During regular development, developers will routinely create
 [temporary branches](CONTRIBUTING.md)
@@ -6,18 +6,23 @@ for code reviews. These branches are not the focus of this document, as they
 are generally short lived (as short as a few minutes, or as long as it takes
 for a developer to complete his work).
 
-When working on branch “develop” (equivalent of the improvement branch on Team
+When working on branch “master” (equivalent of the improvement branch on Team
 Foundation Server, our prior source code management system):
 
-1. We will “normally” have one development stream: Branch “develop”. This is
+1. We will normally have one development stream: Branch “master”. This is
 the equivalent of the “improvement” branch in TFS, and represents our
 “latest/greatest” code. Most developers work on this branch, or a sub-branch
 of this branch, the majority of the time.
 
-2. We will have a “master” branch; we will merge to this when we want to test
-and stabilize for a release (if needed). Note that the “master” branch will
-generally be the last “stable” release of the “develop” branch; no other
-branches should be merged there. Once stabilized, we'll tag it for release.
+2. When we need a branch to stabilize a release, we will create a branch on the
+fly for that purpose with a meaningful name, and
+[cherry-pick](https://git-scm.com/docs/git-cherry-pick)
+or hand-merge changes as necessary
+to make the branch stable. Once stable, a tag will be created with a meaningful
+tag for the release and then the branch can be deleted. As an example, we may
+create a branch named "TP5-stabilize". Once the branch is stable and we ship
+code from it, we can create a tag named "2016-TP5" and then remove the branch
+when it is no longer actively used for development.
 
 In addition, we’ll have two categories of other branches in our repositories:
 
@@ -25,7 +30,7 @@ In addition, we’ll have two categories of other branches in our repositories:
 2. Long-lived development branches. These would be for a long-lived development
 effort (something that several people may work on, or something that may not be
 checked in for some period of time). Eventually, as this work gets merged to the
-“develop” branch and/or to a “release” branch, the long-lived development branch
+“master” branch and/or to a “release” branch, the long-lived development branch
 will be deleted.
 
 To manage a long-lived development branch, developers should create temporary
@@ -36,7 +41,7 @@ in future merging.
 ###Release Branches
 
 In addition to the above, we can have any number of “release” branches. Examples
-of such release branches might be “2016_URNext”. This would be intended as
+of such release branches might be “2016-URNext”. This would be intended as
 a Update Rollup development branch for the 2016 release of Operations Manager,
 for example.
 
@@ -54,25 +59,24 @@ Usually you'll tag a particular version so that you can recreate it (i.e.
 "v1.1.0-2"). A branch is more of a strategy to provide on-going updates on a
 particular version of the code while continuing to do development on it.
 
-Given that 2016_TP5 (Technical Preview 5) will be a “snapshot” of branch “master”,
-it’s highly likely that “2016_TP5” will be a tag off of the master branch.
-Note that if the "develop" branch is highly stable at the time of a release,
-we may choose to simply skip merging to master and tagging the "develop"
-branch.
+It is likely that 2016-TP5 (Technical Preview 5) will be a tag off of the
+master branch. However, if the master branch is not stable at the time 2016-TP5
+will be produced, we can create a stabilization branch (as documented above)
+that will be used temporarily to create a stable build.
 
-Meanwhile, as we’re working on “2016_URNext” (a branch), when we decide to
-actually ship a UR out of it, we can tag that to be “2016_UR1” (for the first
-UR), leaving the “2016_URNext” branch for further work. Each time we ship code
+Meanwhile, as we’re working on “2016-URNext” (a branch), when we decide to
+actually ship a UR out of it, we can tag that to be “2016-UR1” (for the first
+UR), leaving the “2016-URNext” branch for further work. Each time we ship code
 for a supported release, we create a tag for that release (regardless if the
-release is off of 2016_URNext or off of mainline or some other branch).
+release is off of 2016-URNext or off of some temporarary stabilization branch).
 
 Tags can be created either on the master build project (bld-scxcore or
-bld-omsagent), or on the individual repositories involved. If we do tag individual
-repositories, it’s important to tag ALL repositories involved for a project (which
-will clutter common projects with multiple tags from multiple consuming
-projects). On the other hand, if we tag the master project, we get all subproject
-dependencies saved automatically, and you have a meaningful tag for the specific
-project being released. For this reason, tagging the master project is preferred.
+bld-omsagent), called a super-project, or on the individual repositories
+involved. Because we need to track all dependencies on a release, we will
+create a tag on the super-project (which will automatically capture all
+dependencies). Note that we may also choose to tag a primary project (like
+OMS-Agent) as well if we want to use GitHub as a distribution vehicle for the
+release.
 
 Finally: Shell bundles, when generated by a project, should support the
 “--source-references” qualifier. This qualifier will dump all relevant git commit
