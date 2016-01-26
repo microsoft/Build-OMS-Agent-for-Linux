@@ -5,10 +5,18 @@
   - [Sudoers configuration](#sudoers-configuration)
   - [Dependencies to build a native package](#dependencies-to-build-a-native-package)
   - [Setting up a system to build a shell bundle](#setting-up-a-system-to-build-a-shell-bundle)
-  - [Preparing system tests](#preparing-system-tests)
 - [Cloning the repositories](#cloning-the-repositories)
+- [Preparing system tests](#preparing-system-tests)
 - [Building omsagent](#building-omsagent)
 - [Troubleshooting](#troubleshooting)
+
+If you are an active contributor to the OMS-Agent project, you should
+[set up your system]
+(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup/git-setup.md)
+and follow our [common workflow]
+(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/workflow/workflow.md).
+
+-----
 
 ### Setting up a machine to build OMS
 
@@ -22,6 +30,7 @@ There are two ways to build OMS.
 1. As an RPM or DEB package that can be installed on the local system,
 assuming all dependencies are met (most easily met if a shell bundle
 was previously installed to "seed" the system), or
+
 2. As a shell bundle.
 
 Building a shell bundle is a superset of of setting up a system to
@@ -29,41 +38,15 @@ build a local RPM, so we will cover that first.
 
 #### Sudoers configuration
 
-Two changes should be made to your sudoers configuration for omsagent to
-build properly. We suggest using ```visudo``` program unless you are
-confident on how to change /etc/sudoers properly.
-
-1. Configure sudoers to not require a TTY.
-
- Some platforms require a TTY be default, and this can be problematic for
- background builds. If you have a line like:
-
- ```Defaults    requiretty```
-
- then comment it out (like this):
-
- ```#Defaults    requiretty```
-
-2. Configure your account to not require a password by adding the NOPASSWD:
-qualifier to the appropriate line that affects your account. After the correct
-changes are applied to /etc/sudoers, test under your personal account with the
-following sequence:
-
- ```shell
- sudo -k
- sudo ls
- ```
-
- If there is no password prompt, then /etc/sudoers was correctly modified.
-
+[Configure sudo](https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup/build.md)
 
 #### Dependencies to build a native package
 
 Note that it's very nice to be able to use the [updatedns]
-(https://github.com/jeffaco/msft-updatedns) project to
-use host names rather than IP numbers. On CentOS systems, this requires
-the bind-utils package (updatedns requires the 'dig' program). The
-bind-utils package isn't otherwise necessary.
+(https://github.com/jeffaco/msft-updatedns) project to use host names
+rather than IP numbers in a Hyper-V environment. On CentOS systems,
+this requires the bind-utils package (updatedns requires the 'dig'
+program). The bind-utils package isn't otherwise necessary.
 
 - On CentOS 7.x
 ```
@@ -103,12 +86,34 @@ to build both both versions of OpenSSL that we can link against.
 Once OpenSSL is set up, you need to configure omsagent to include the
 ```--enable-ulinux``` qualifier, like this:<br>```./configure --enable-ulinux``` 
 
-#### Preparing system tests
-**This section only aplies if you do not have read access to MSFTOSSMgmt.**
+### Cloning the repositories
 
-System tests communicate with the server. They require keys which may not be published.
-You may obtain your own keys for free by creating an account on
-[Microsoft Operations Management Suite](http://www.microsoft.com/en-us/server-cloud/operations-management-suite/why-oms.aspx)
+If you have read access to the [OMS TestCoverage]
+(https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project,
+use the following.
+
+Otherwise, only run the first `git clone` command and refer to 
+[preparing system tests](#preparing-system-tests) if you want them to be run.
+
+```shell
+git clone --recursive git@github.com:Microsoft/Build-OMS-Agent-for-Linux.git bld-omsagent
+git clone git@github.com:Microsoft/OMS-Agent-for-Linux-testconfig.git bld-omsagent/omsagent/test/config
+```
+
+Note that there are several subprojects, and authentication is a hassle
+unless you set up an SSH key via your GitHub account. [Set up your machine]
+(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup/git-setup.md)
+properly for a much easier workflow.
+
+#### Preparing system tests
+
+**This section only aplies if you do not have read access to [OMS TestCoverage]
+(https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project**
+
+System tests communicate with the server. They require keys which may
+not be published.  You may obtain your own keys for free by creating
+an account on [Microsoft Operations Management
+Suite](http://www.microsoft.com/en-us/server-cloud/operations-management-suite/why-oms.aspx)
 then get the keys from the settings view.
 
 Create the file `bld-omsagent/omsagent/test/config/systest.conf`
@@ -122,43 +127,6 @@ export TEST_SHARED_KEY_2=<key>
 
 export TEST_PROXY_SETTING="http://proxyuser:proxypass@host:8080"
 ```
-
-### Cloning the repositories
-
-If you have read access to MSFTOSSMgmt use the following.
-
-Otherwise, only run the first `git clone` command and refer to 
-[preparing system tests](#preparing-system-tests) if you want them to be run.
-
-```shell
-git clone --recursive git@github.com:MSFTOSSMgmt/bld-omsagent.git
-git clone git@github.com:MSFTOSSMgmt/omsagent-testconfig.git bld-omsagent/omsagent/test/config
-```
-
-Note that there are several subprojects, and authentication is a hassle
-unless you set up an SSH key via your github account. We would strongly
-suggest setting up an SSH key with a (strong) passphrase, adding the
-public key to your github account, and then add the private key to your
-SSH program to act as an SSH agent.
-
-The basic steps are:
-
-1. [Create an SSH key for github] (https://help.github.com/articles/generating-ssh-keys/)
-2. Configure your SSH program to act as an SSH agent. Our team uses a
-variety of SSH programs. Some examples are:
-  1. [Putty] (http://www.chiark.greenend.org.uk/~sgtatham/putty/), [Using Pageant](http://the.earth.li/~sgtatham/putty/0.58/htmldoc/Chapter9.html)
-  2. [SecureCRT](https://www.vandyke.com/products/securecrt/index.html)/[SecureFX]
-     (https://www.vandyke.com/products/securefx/index.html) bundle, [Configure SecureCRT]
-     (https://www.vandyke.com/support/tips/agent_forwarding.html#agent)
-  3. [MobaXterm] (http://mobaxterm.mobatek.net/), [Configure MobaXterm] (CONFIGURE-MobaXterm.md)
-
-Other SSH programs exist as well, or you can use the
-[SSH Agent] (http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-6.html)
-that is included as part of [OpenSSH] (https://en.wikipedia.org/wiki/OpenSSH)
-as well (although this only works for a single Linux session).
-
-The end result of this mechanism: You specify the password once when you
-start your SSH program or agent, and then you never type the passphrase again.
 
 ### Building omsagent
 
