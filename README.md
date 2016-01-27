@@ -12,9 +12,11 @@
 
 If you are an active contributor to the OMS-Agent project, you should
 [set up your system]
-(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup/git-setup.md)
+(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup-git.md)
 and follow our [common workflow]
-(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/workflow/workflow.md).
+(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/workflow-workflow.md).
+New to git? Read [guidelines for development]
+(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup-rules.md).
 
 -----
 
@@ -38,7 +40,7 @@ build a local RPM, so we will cover that first.
 
 #### Sudoers configuration
 
-[Configure sudo](https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup/build.md)
+[Configure sudo](https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup-build.md)
 
 #### Dependencies to build a native package
 
@@ -102,7 +104,7 @@ git clone git@github.com:Microsoft/OMS-Agent-for-Linux-testconfig.git bld-omsage
 
 Note that there are several subprojects, and authentication is a hassle
 unless you set up an SSH key via your GitHub account. [Set up your machine]
-(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup/git-setup.md)
+(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup-git.md)
 properly for a much easier workflow.
 
 #### Preparing system tests
