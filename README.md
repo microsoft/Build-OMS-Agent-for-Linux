@@ -90,7 +90,7 @@ Once OpenSSL is set up, you need to configure omsagent to include the
 
 ### Cloning the repositories
 
-If you have read access to the [OMS TestCoverage]
+If you have read access to the [OMS TestConfig]
 (https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project,
 use the following.
 
@@ -109,7 +109,7 @@ properly for a much easier workflow.
 
 #### Preparing system tests
 
-**This section only aplies if you do not have read access to [OMS TestCoverage]
+**This section only aplies if you do not have read access to [OMS TestConfig]
 (https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project**
 
 System tests communicate with the server. They require keys which may
