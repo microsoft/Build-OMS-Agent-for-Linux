@@ -6,6 +6,10 @@
 	path = opsmgr
 	url = git@github.com:Microsoft/SCXcore.git
 	branch = master
+[submodule "opsmgr-kits"]
+	path = opsmgr-kits
+	url = git@github.com:Microsoft/SCXcore-osskits.git
+	branch = master
 [submodule "pal"]
 	path = pal
 	url = git@github.com:Microsoft/pal.git
