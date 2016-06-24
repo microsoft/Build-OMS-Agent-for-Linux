@@ -12,11 +12,11 @@
 
 If you are an active contributor to the OMS-Agent project, you should
 [set up your system]
-(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup-git.md)
+(https://github.com/Microsoft/ostc-docs/blob/master/setup-git.md)
 and follow our [common workflow]
-(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/workflow-workflow.md).
+(https://github.com/Microsoft/ostc-docs/blob/master/workflow-workflow.md).
 New to git? Read [guidelines for development]
-(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup-rules.md).
+(https://github.com/Microsoft/ostc-docs/blob/master/setup-rules.md).
 
 -----
 
@@ -40,7 +40,7 @@ build a local RPM, so we will cover that first.
 
 #### Sudoers configuration
 
-[Configure sudo](https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup-build.md)
+[Configure sudo](https://github.com/Microsoft/ostc-docs/blob/master/setup-build.md)
 
 #### Dependencies to build a native package
 
@@ -82,7 +82,7 @@ are generally upwards compatible when installed on newer Linux systems.
 
 A notable exception: We use the OpenSSL package, and we can't tell if
 we need OpenSSL v0.9.8 or OpenSSL v1.0.x. As a result, we have a [special
-process] (https://github.com/MSFTOSSMgmt/ostc-openssl/blob/master/README.md)
+process] (https://github.com/Microsoft/ostc-openssl/blob/master/README.md)
 to build both both versions of OpenSSL that we can link against.
 
 Once OpenSSL is set up, you need to configure omsagent to include the
@@ -104,7 +104,7 @@ git clone git@github.com:Microsoft/OMS-Agent-for-Linux-testconfig.git bld-omsage
 
 Note that there are several subprojects, and authentication is a hassle
 unless you set up an SSH key via your GitHub account. [Set up your machine]
-(https://github.com/MSFTOSSMgmt/ostc-docs/blob/master/setup-git.md)
+(https://github.com/Microsoft/ostc-docs/blob/master/setup-git.md)
 properly for a much easier workflow.
 
 #### Preparing system tests
