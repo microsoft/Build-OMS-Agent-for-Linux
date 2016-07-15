@@ -172,4 +172,4 @@ While this points to an issue where your system version of Ruby is too old
 (strangely enough, Ruby is required to build Ruby), the root source of the
 issue is that you didn't clone the repository recursively. Please read
 [the section on cloning the repositories](#cloning-the-repositories) for
-details on how to cone the repository.
+details on how to clone the repository.
