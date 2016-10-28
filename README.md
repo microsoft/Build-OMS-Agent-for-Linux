@@ -9,6 +9,7 @@
 - [Preparing system tests](#preparing-system-tests)
 - [Building omsagent](#building-omsagent)
 - [Troubleshooting](#troubleshooting)
+- [Code of Conduct](#code-of-conduct)
 
 If you are an active contributor to the OMS-Agent project, you should
 [set up your system]
@@ -173,3 +174,12 @@ While this points to an issue where your system version of Ruby is too old
 issue is that you didn't clone the repository recursively. Please read
 [the section on cloning the repositories](#cloning-the-repositories) for
 details on how to clone the repository.
+
+### Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct]
+(https://opensource.microsoft.com/codeofconduct/).  For more
+information see the [Code of Conduct FAQ]
+(https://opensource.microsoft.com/codeofconduct/faq/) or contact
+[opencode@microsoft.com](mailto:opencode@microsoft.com) with any
+additional questions or comments.
