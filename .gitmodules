@@ -17,7 +17,7 @@
 [submodule "omi"]
 	path = omi
 	url = git@github.com:Microsoft/omi.git
-	branch = stable
+	branch = stable-config
 [submodule "dsc"]
 	path = dsc
 	url = git@github.com:Microsoft/PowerShell-DSC-for-Linux.git
