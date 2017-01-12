@@ -53,11 +53,21 @@ program). The bind-utils package isn't otherwise necessary.
 
 - On CentOS 7.x
 ```
- sudo yum install git bind-utils ruby bison gcc-c++ rpm-devel pam-devel openssl-devel rpm-build mysql-devel
+ sudo yum install git bind-utils bison gcc-c++ rpm-devel pam-devel openssl-devel rpm-build mysql-devel
 ```
 - On Ubuntu 14.04
 ```
- sudo apt-get install git pkg-config make ruby bison g++ rpm librpm-dev libpam0g-dev libssl-dev libmysqlclient-dev
+ sudo apt-get install git pkg-config make bison g++ rpm librpm-dev libpam0g-dev libssl-dev libmysqlclient-dev
+```
+Install minimum version of Ruby (the system must have 1.9 or higher, but 2.2.6 is recommended). This is needed for all systems. This can be done with the following commands:
+```
+ wget https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.6.tar.gz
+ tar xzvf ruby-2.2.6.tar.gz
+ cd ruby-2.2.6
+ ./configure
+ make
+ sudo make install
+ $(which ruby) --version  # verify that this prints 2.2.6
 ```
 
 - Notes on other platforms
