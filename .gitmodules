@@ -22,7 +22,3 @@
 	path = dsc
 	url = git@github.com:Microsoft/PowerShell-DSC-for-Linux.git
 	branch = master
-[submodule "auoms"]
-	path = auoms
-	url = git@github.com:Microsoft/OMS-Auditd-Plugin.git
-	branch = master
