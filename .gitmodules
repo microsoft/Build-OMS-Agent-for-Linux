@@ -22,3 +22,7 @@
 	path = dsc
 	url = git@github.com:Microsoft/PowerShell-DSC-for-Linux.git
 	branch = master
+[submodule "scxcore-kits"]
+	path = scxcore-kits
+	url = git@github.com:Microsoft/SCXCore-kits.git
+	branch = master
