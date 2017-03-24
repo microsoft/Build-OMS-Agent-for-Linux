@@ -26,3 +26,6 @@
 	path = auoms
 	url = git@github.com:Microsoft/OMS-Auditd-Plugin.git
 	branch = master
+[submodule "scxcore-kits"]
+	path = scxcore-kits
+	url = git@github.com:Microsoft/SCXCore-kits.git
