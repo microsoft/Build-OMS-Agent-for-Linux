@@ -12,12 +12,9 @@
 - [Code of Conduct](#code-of-conduct)
 
 If you are an active contributor to the OMS-Agent project, you should
-[set up your system]
-(https://github.com/Microsoft/ostc-docs/blob/master/setup-git.md)
-and follow our [common workflow]
-(https://github.com/Microsoft/ostc-docs/blob/master/workflow-workflow.md).
-New to git? Read [guidelines for development]
-(https://github.com/Microsoft/ostc-docs/blob/master/setup-rules.md).
+[set up your system](https://github.com/Microsoft/ostc-docs/blob/master/setup-git.md)
+and follow our [common workflow](https://github.com/Microsoft/ostc-docs/blob/master/workflow-workflow.md).
+New to git? Read [guidelines for development](https://github.com/Microsoft/ostc-docs/blob/master/setup-rules.md).
 
 -----
 
@@ -45,8 +42,7 @@ build a local RPM, so we will cover that first.
 
 #### Dependencies to build a native package
 
-Note that it's very nice to be able to use the [updatedns]
-(https://github.com/jeffaco/msft-updatedns) project to use host names
+Note that it's very nice to be able to use the [updatedns](https://github.com/jeffaco/msft-updatedns) project to use host names
 rather than IP numbers in a Hyper-V environment. On CentOS systems,
 this requires the bind-utils package (updatedns requires the 'dig'
 program). The bind-utils package isn't otherwise necessary.
@@ -93,7 +89,7 @@ are generally upwards compatible when installed on newer Linux systems.
 
 A notable exception: We use the OpenSSL package, and we can't tell if
 we need OpenSSL v0.9.8 or OpenSSL v1.0.x. As a result, we have a [special
-process] (https://github.com/Microsoft/ostc-openssl/blob/master/README.md)
+process](https://github.com/Microsoft/ostc-openssl/blob/master/README.md)
 to build both both versions of OpenSSL that we can link against.
 
 Once OpenSSL is set up, you need to configure omsagent to include the
@@ -101,8 +97,7 @@ Once OpenSSL is set up, you need to configure omsagent to include the
 
 ### Cloning the repositories
 
-If you have read access to the [OMS TestConfig]
-(https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project,
+If you have read access to the [OMS TestConfig](https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project,
 use the following.
 
 Otherwise, only run the first `git clone` command and refer to 
@@ -120,8 +115,7 @@ properly for a much easier workflow.
 
 #### Preparing system tests
 
-**This section only aplies if you do not have read access to [OMS TestConfig]
-(https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project**
+**This section only aplies if you do not have read access to [OMS TestConfig](https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project**
 
 System tests communicate with the server. They require keys which may
 not be published.  You may obtain your own keys for free by creating
@@ -187,9 +181,7 @@ details on how to clone the repository.
 
 ### Code of Conduct
 
-This project has adopted the [Microsoft Open Source Code of Conduct]
-(https://opensource.microsoft.com/codeofconduct/).  For more
-information see the [Code of Conduct FAQ]
-(https://opensource.microsoft.com/codeofconduct/faq/) or contact
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).  For more
+information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact
 [opencode@microsoft.com](mailto:opencode@microsoft.com) with any
 additional questions or comments.
