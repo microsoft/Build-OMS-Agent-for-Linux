@@ -29,3 +29,4 @@
 [submodule "scxcore-kits"]
 	path = scxcore-kits
 	url = git@github.com:Microsoft/SCXCore-kits.git
+	branch = master
