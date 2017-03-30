@@ -49,11 +49,11 @@ program). The bind-utils package isn't otherwise necessary.
 
 - On CentOS 7.x
 ```
- sudo yum install git bind-utils bison gcc-c++ rpm-devel pam-devel openssl-devel rpm-build mysql-devel
+ sudo yum install git bind-utils bison gcc-c++ rpm-devel pam-devel openssl-devel rpm-build mysql-devel cmake boost-devel boost-test audit-libs-devel unzip
 ```
 - On Ubuntu 14.04
 ```
- sudo apt-get install git pkg-config make bison g++ rpm librpm-dev libpam0g-dev libssl-dev libmysqlclient-dev
+ sudo apt-get install git pkg-config make bison g++ rpm librpm-dev libpam0g-dev libssl-dev libmysqlclient-dev cmake libboost-dev libboost-test-dev libaudit-dev libauparse-dev unzip
 ```
 Install minimum version of Ruby (the system must have 1.9 or higher, but 2.2.6 is recommended). This is needed for all systems. This can be done with the following commands:
 ```
@@ -65,6 +65,10 @@ Install minimum version of Ruby (the system must have 1.9 or higher, but 2.2.6 i
  sudo make install
  $(which ruby) --version  # verify that this prints 2.2.6
 ```
+
+- Note on libboost
+
+Libboost is not a runtime dependency. It is only needed to build and run the OMS-Auditd-Plugin unittests.
 
 - Notes on other platforms
 
