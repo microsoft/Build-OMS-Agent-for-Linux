@@ -2,10 +2,6 @@
 	path = omsagent
 	url = git@github.com:Microsoft/OMS-Agent-for-Linux.git
 	branch = master
-[submodule "opsmgr"]
-	path = opsmgr
-	url = git@github.com:Microsoft/SCXcore.git
-	branch = master
 [submodule "opsmgr-kits"]
 	path = opsmgr-kits
 	url = git@github.com:Microsoft/SCXcore-osskits.git
