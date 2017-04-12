@@ -1,0 +1,12 @@
+# -*- mode: Makefile; -*-
+
+# Build Version Information
+
+SCX_BUILDVERSION_MAJOR=1
+SCX_BUILDVERSION_MINOR=6
+SCX_BUILDVERSION_PATCH=3
+SCX_BUILDVERSION_BUILDNR=227
+SCX_BUILDVERSION_DATE=20170411
+SCX_BUILDVERSION_STATUS=Developer_Build
+
+#-------------------------------- End of File -----------------------------------
