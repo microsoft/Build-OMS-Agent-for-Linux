@@ -26,3 +26,6 @@
 	path = scxcore-kits
 	url = git@github.com:Microsoft/SCXCore-kits.git
 	branch = master
+[submodule "omi-kits"]
+	path = omi-kits
+	url = git@github.com:Microsoft/omi-kits.git
