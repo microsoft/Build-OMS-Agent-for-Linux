@@ -10,6 +10,18 @@
 	path = pal
 	url = git@github.com:Microsoft/pal.git
 	branch = master
+[submodule "omi"]	
+	path = omi	
+	url = git@github.com:Microsoft/omi.git	
+	branch = stable	
+[submodule "dsc"]	
+	path = dsc	
+	url = git@github.com:Microsoft/PowerShell-DSC-for-Linux.git	
+	branch = master	
+[submodule "auoms"]	
+	path = auoms	
+	url = git@github.com:Microsoft/OMS-Auditd-Plugin.git	
+	branch = master	
 [submodule "scxcore-kits"]
 	path = scxcore-kits
 	url = git@github.com:Microsoft/SCXCore-kits.git
