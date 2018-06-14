@@ -1,7 +1,7 @@
 [submodule "omsagent"]
 	path = omsagent
 	url = git@github.com:Microsoft/OMS-Agent-for-Linux.git
-	branch = master
+	branch =ruby_2_4_4 
 [submodule "opsmgr-kits"]
 	path = opsmgr-kits
 	url = git@github.com:Microsoft/SCXcore-osskits.git
