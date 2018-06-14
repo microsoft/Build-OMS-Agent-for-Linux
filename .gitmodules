@@ -31,7 +31,7 @@
 	url = git@github.com:Microsoft/omi-kits.git
 [submodule "auoms-kits"] 
 	path = auoms-kits 
-	url = https://github.com/shpimpal/auoms-kits.git 
+	url = git@github.com:shpimpal/auoms-kits.git
 [submodule "dsc-kits"] 
 	path = dsc-kits 
-	url = https://github.com/shpimpal/dsc-kits.git 
+	url = git@github.com:shpimpal/dsc-kits.git
