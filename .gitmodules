@@ -1,7 +1,7 @@
 [submodule "omsagent"]
 	path = omsagent
 	url = git@github.com:Microsoft/OMS-Agent-for-Linux.git
-	branch = master
+	branch = agaiha_test_gems
 [submodule "opsmgr-kits"]
 	path = opsmgr-kits
 	url = git@github.com:Microsoft/SCXcore-osskits.git
