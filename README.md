@@ -92,7 +92,7 @@ CentOS 5.0 for this), as binary images created with older Linux systems
 are generally upwards compatible when installed on newer Linux systems.
 
 A notable exception: We use the OpenSSL package, and we can't tell if
-we need OpenSSL v0.9.8 or OpenSSL v1.0.x. As a result, we have a [special
+we need OpenSSL v1.0.x or OpenSSL v1.1.x. As a result, we have a [special
 process](https://github.com/Microsoft/ostc-openssl/blob/master/README.md)
 to build both both versions of OpenSSL that we can link against.
 
