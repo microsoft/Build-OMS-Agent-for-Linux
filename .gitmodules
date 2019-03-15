@@ -17,7 +17,7 @@
 [submodule "dsc"]
 	path = dsc
 	url = git@github.com:Microsoft/PowerShell-DSC-for-Linux.git
-	branch = master
+	branch = bhbrahma/proxyMetadata
 [submodule "auoms"]
 	path = auoms
 	url = git@github.com:Microsoft/OMS-Auditd-Plugin.git
