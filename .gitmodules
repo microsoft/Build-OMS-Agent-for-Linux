@@ -1,37 +1,37 @@
 [submodule "omsagent"]
 	path = omsagent
-	url = git@github.com:Microsoft/OMS-Agent-for-Linux.git
+	url = git@github.com:microsoft/OMS-Agent-for-Linux.git
 	branch = master
 [submodule "opsmgr-kits"]
 	path = opsmgr-kits
-	url = git@github.com:Microsoft/SCXcore-osskits.git
+	url = git@github.com:microsoft/SCXcore-osskits.git
 	branch = master
 [submodule "pal"]
 	path = pal
-	url = git@github.com:Microsoft/pal.git
+	url = git@github.com:microsoft/pal.git
 	branch = master
 [submodule "omi"]
 	path = omi
-	url = git@github.com:Microsoft/omi.git
+	url = git@github.com:microsoft/omi.git
 	branch = stable
 [submodule "dsc"]
 	path = dsc
-	url = git@github.com:Microsoft/PowerShell-DSC-for-Linux.git
+	url = git@github.com:microsoft/PowerShell-DSC-for-Linux.git
 	branch = master
 [submodule "auoms"]
 	path = auoms
-	url = git@github.com:Microsoft/OMS-Auditd-Plugin.git
+	url = git@github.com:microsoft/OMS-Auditd-Plugin.git
 	branch = master
 [submodule "scxcore-kits"]
 	path = scxcore-kits
-	url = git@github.com:Microsoft/SCXCore-kits.git
+	url = git@github.com:microsoft/SCXCore-kits.git
 	branch = master
 [submodule "omi-kits"]
 	path = omi-kits
-	url = git@github.com:Microsoft/omi-kits.git
+	url = git@github.com:microsoft/omi-kits.git
 [submodule "auoms-kits"]
 	path = auoms-kits
-	url = git@github.com:Microsoft/auoms-kits.git
+	url = git@github.com:microsoft/auoms-kits.git
 [submodule "dsc-kits"] 
 	path = dsc-kits 
 	url = git@github.com:shpimpal/dsc-kits.git
