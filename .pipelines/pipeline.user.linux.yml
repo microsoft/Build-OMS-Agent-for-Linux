@@ -1,0 +1,43 @@
+
+environment:
+  host:
+    os: 'linux'
+    flavor: 'ubuntu'
+    version: '16.04'
+  runtime:
+    provider: 'appcontainer'
+    image: 'cdpxlinux.azurecr.io/user/geneva/oms-centos5-x64:2.0'
+    source_mode: 'link'
+version:
+  name: 'Build-OMS-Agent-for-Linux'
+
+  major: 1
+  minor: 0
+  tag: 'test'
+  system: 'patch'
+
+workspace_options:
+  force_workspace_wipe: false
+  enable_legacy_networking: true
+
+versioning:
+  commands:
+
+static_analysis_options:
+
+restore:
+  commands:
+    - !!defaultcommand
+      name: 'Install'
+      command: 'pipeline-install.sh'
+
+build:
+  commands:
+    - !!buildcommand
+      name: 'Build'
+      command: 'pipeline-build.sh'
+      artifacts:
+        - from: 'omsagent/target'
+          to: 'buildoutput'
+          include:
+            - '**/*'
