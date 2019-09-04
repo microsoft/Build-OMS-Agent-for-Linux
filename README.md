@@ -113,8 +113,7 @@ git clone git@github.com:Microsoft/OMS-Agent-for-Linux-testconfig.git bld-omsage
 ```
 
 Note that there are several subprojects, and authentication is a hassle
-unless you set up an SSH key via your GitHub account. [Set up your machine]
-(https://github.com/Microsoft/ostc-docs/blob/master/setup-git.md)
+unless you set up an SSH key via your GitHub account. [Set up your machine](https://github.com/Microsoft/ostc-docs/blob/master/setup-git.md)
 properly for a much easier workflow.
 
 #### Preparing system tests
