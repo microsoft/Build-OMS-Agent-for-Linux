@@ -17,7 +17,7 @@
 [submodule "dsc"]
 	path = dsc
 	url = ../../microsoft/PowerShell-DSC-for-Linux.git
-	branch = master
+	branch = sept2019release
 [submodule "auoms"]
 	path = auoms
 	url = ../../microsoft/OMS-Auditd-Plugin.git
