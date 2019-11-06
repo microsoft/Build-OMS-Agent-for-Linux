@@ -60,11 +60,11 @@ echo "**************************************************************************
 echo "Move back out to root folder"
 cd $DIR
 
-mkdir -p target/Linux_ULINUX_1.0_x64_64_Release/dsc 
+mkdir -p omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc 
 
-echo nx > target/Linux_ULINUX_1.0_x64_64_Release/dsc/nx.sha256sums
-touch target/Linux_ULINUX_1.0_x64_64_Release/dsc/nxOMSSudoCustomLog.zip
-echo nxOMSSudoCustomLog > target/Linux_ULINUX_1.0_x64_64_Release/dsc/nxOMSSudoCustomLog.sha256sums
+echo nx > omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nx.sha256sums
+touch omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nxOMSSudoCustomLog.zip
+echo nxOMSSudoCustomLog > omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nxOMSSudoCustomLog.sha256sums
 
 echo "***************************************************************************"
 echo "***************************************************************************"
