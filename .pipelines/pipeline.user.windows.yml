@@ -39,7 +39,7 @@ build:
           include:
             - '**/*'
           signing_options:
-            profile: 'CP-450778-Pgp-RPM_DEB_Detached' # replace with when the process complete CP-453387-Pgp-RPM_DEB_Detached
+            profile: 'CP-453387-Pgp-RPM_DEB_Detached'
 
 package:
   commands:
