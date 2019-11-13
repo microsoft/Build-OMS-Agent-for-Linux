@@ -39,7 +39,7 @@ build:
           include:
             - '**/*'
           signing_options:
-            profile: 'CP-453387-Pgp-RPM_DEB_Detached'
+            profile: 'CP-453387-pgpdetached'
 
 package:
   commands:
