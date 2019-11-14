@@ -19,7 +19,8 @@ version:
 workspace_options:
   download_current_artifacts: true
   force_workspace_wipe: false
-  enable_legacy_networking: true
+#  enable_legacy_networking: true
+  publish_to_pipeline_artifacts: true
 
 versioning:
   commands:
@@ -45,7 +46,7 @@ package:
   commands:
     - !!buildcommand
       name: 'DSC Re-Package With Signed Artifacts'
-      command: 'pipeline-package-signed-modules.cmd'
+      command: 'pipeline-dsc-packaging.cmd'
       artifacts:
         - from: 'pipeline-signing\dsc\signing'
           to: 'buildoutput\dsc_signing'

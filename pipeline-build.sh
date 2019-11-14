@@ -62,9 +62,11 @@ cd $DIR
 
 mkdir -p omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc 
 
-echo nx > omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nx.sha256sums
-touch omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nxOMSSudoCustomLog.zip
+echo nx123456789 > omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nx.sha256sums
 echo nxOMSSudoCustomLog > omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nxOMSSudoCustomLog.sha256sums
+
+zip -r omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nx.zip omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nx.sha256sums
+zip -r omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nxOMSSudoCustomLog.zip omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc/nxOMSSudoCustomLog.sha256sums
 
 echo "***************************************************************************"
 echo "***************************************************************************"
