@@ -19,8 +19,7 @@ version:
 workspace_options:
   download_current_artifacts: true
   force_workspace_wipe: false
-#  enable_legacy_networking: true
-  publish_to_pipeline_artifacts: true
+  enable_legacy_networking: true
 
 versioning:
   commands:
