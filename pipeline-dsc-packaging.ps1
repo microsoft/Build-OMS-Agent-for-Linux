@@ -14,7 +14,7 @@ Function AddtoExistingZip ($ZIPFileName,$newFileToAdd)
 	}
 }
 
-$pipelinePath=.\pipeline-signing
+$pipelinePath = Join-Path .\ pipeline-signing
 
 $workingPath = $(Resolve-Path $pipelinePath)
 Write-Host "pipelinePath = ${workingPath}"
