@@ -6,7 +6,6 @@ Function ExtractFileFromZip ($ZIPFileName,$destPath,$pattern)
     {
 
 	    $zip = [IO.Compression.ZipFile]::OpenRead($ZIPFileName)
-        
         $entries=$zip.Entries | where {$_.FullName -like $pattern} 
 
         $entries | foreach {
@@ -44,7 +43,7 @@ for ($i=0; $i -lt $files.Count; $i++) {
     Write-Host "Extracting '*.sha256sums' to $signingPath path..." 
     ExtractFileFromZip $moduleFilePath $signingPath "*.sha256sums"
 
-    Write-Host "Renaming '${moduleFilePath}' to zip '${moduleName}'..." 
+    Write-Host "Renaming '${moduleFilePath}' to zip '${newModuleFilePath}'..." 
     Rename-Item -Path $moduleFilePath -NewName $newModuleFilePath
 }
 

@@ -67,10 +67,13 @@ mkdir -p nx
 echo nx123456789 > nx/nx.sha256sums
 echo 123456 > nx/nx.ps1
 zip -r nx_1.5.zip nx
+rm -rf nx
 
+mkdir -p nxOMSSudoCustomLog
 echo nxOMSSudoCustomLog > nxOMSSudoCustomLog/nxOMSSudoCustomLog.sha256sums
 echo 123456 > nxOMSSudoCustomLog/nxOMSSudoCustomLog.ps1
 zip -r nxOMSSudoCustomLog_2.7.zip nxOMSSudoCustomLog
+rm -rf nxOMSSudoCustomLog
 
 cd $DIR
 echo "***************************************************************************"
