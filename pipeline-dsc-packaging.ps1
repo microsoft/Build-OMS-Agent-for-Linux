@@ -37,7 +37,7 @@ for ($i=0; $i -lt $files.Count; $i++) {
     $fileName = $files[$i].BaseName + ".asc"
     $signedFilePATH = Join-Path $signingPath $fileName
     Write-Host "Adding signed file '${fileName}' to '${zipPath}'..."
-    $targetPath = $moduleName + "\\" + $fileName
+    $targetPath = $moduleName + "/" + $fileName
     AddtoExistingZip $zipPATH $signedFilePATH $targetPath
     rm $signedFilePATH
 }
