@@ -17,6 +17,7 @@ Xcopy %DIR%\%SIGNING_DIR%\dsc\*.sha256sums %DIR%\%SIGNING_DIR%\dsc\signing /Y /M
 dir %DIR%\%SIGNING_DIR%\dsc\signing
 
 
+powershell -NoProfile -ExecutionPolicy Unrestricted -Command "& '%~dp0pipeline-dsc-signing.ps1'"
 
 if %ERRORLEVEL% LSS 8 (
     exit /b 0
