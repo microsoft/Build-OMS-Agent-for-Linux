@@ -26,16 +26,25 @@ echo "Changing to build folder"
 cd build
 echo "WHAT IS HERE?"
 ls
+echo "*************************** Run Unit Tests ********************************"
 echo "***************************************************************************"
+echo "***************************************************************************"
+# echo "Configure"
+# ./configure --enable-ulinux
+# echo "Make unittest"
+# make unittest
+
+echo "******************************** Run Make *********************************"
 echo "***************************************************************************"
 echo "***************************************************************************"
 echo "Configure"
+make distclean
 ./configure --enable-ulinux
 echo "***************************************************************************"
 echo "***************************************************************************"
 echo "***************************************************************************"
 echo "Make"
-# make
+make
 
 # Save the exit code from react-scripts build
 EX=$?
@@ -60,22 +69,22 @@ echo "**************************************************************************
 echo "Move back out to root folder"
 cd $DIR
 
-mkdir -p omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc 
-cd omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc 
+# mkdir -p omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc 
+# cd omsagent/target/Linux_ULINUX_1.0_x64_64_Release/dsc 
 
-mkdir -p nx
-echo nx123456789 > nx/nx.sha256sums
-echo 123456 > nx/nx.ps1
-zip -r nx_1.5.zip nx
-rm -rf nx
+# mkdir -p nx
+# echo nx123456789 > nx/nx.sha256sums
+# echo 123456 > nx/nx.ps1
+# zip -r nx_1.5.zip nx
+# rm -rf nx
 
-mkdir -p nxOMSSudoCustomLog
-echo nxOMSSudoCustomLog > nxOMSSudoCustomLog/nxOMSSudoCustomLog.sha256sums
-echo 123456 > nxOMSSudoCustomLog/nxOMSSudoCustomLog.ps1
-zip -r nxOMSSudoCustomLog_2.7.zip nxOMSSudoCustomLog
-rm -rf nxOMSSudoCustomLog
+# mkdir -p nxOMSSudoCustomLog
+# echo nxOMSSudoCustomLog > nxOMSSudoCustomLog/nxOMSSudoCustomLog.sha256sums
+# echo 123456 > nxOMSSudoCustomLog/nxOMSSudoCustomLog.ps1
+# zip -r nxOMSSudoCustomLog_2.7.zip nxOMSSudoCustomLog
+# rm -rf nxOMSSudoCustomLog
+# cd $DIR
 
-cd $DIR
 echo "***************************************************************************"
 echo "***************************************************************************"
 echo "***************************************************************************"
