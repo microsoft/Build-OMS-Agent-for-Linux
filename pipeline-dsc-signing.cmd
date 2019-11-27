@@ -12,11 +12,6 @@ Xcopy /E /I /Y %CDP_TEMP_PRIOR_DROP_FOLDER_CONTAINER_PATH%\current\drop\Build_x6
 
 mkdir "%DIR%\%SIGNING_DIR%\dsc\signing"
 
-Xcopy %DIR%\%SIGNING_DIR%\dsc\*.sha256sums %DIR%\%SIGNING_DIR%\dsc\signing /Y /M
-
-dir %DIR%\%SIGNING_DIR%\dsc\signing
-
-
 powershell -NoProfile -ExecutionPolicy Unrestricted -Command "& '%~dp0pipeline-dsc-signing.ps1'"
 
 if %ERRORLEVEL% LSS 8 (
