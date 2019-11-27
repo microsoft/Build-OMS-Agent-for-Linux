@@ -1,7 +1,7 @@
 [submodule "omsagent"]
 	path = omsagent
 	url = ../../microsoft/OMS-Agent-for-Linux.git
-	branch = master
+	branch = x86ReleaseFreeze
 [submodule "opsmgr-kits"]
 	path = opsmgr-kits
 	url = ../../microsoft/SCXcore-osskits.git
@@ -17,7 +17,7 @@
 [submodule "dsc"]
 	path = dsc
 	url = ../../microsoft/PowerShell-DSC-for-Linux.git
-	branch = sept2019release
+	branch = x86ReleaseFreeze
 [submodule "auoms"]
 	path = auoms
 	url = ../../microsoft/OMS-Auditd-Plugin.git
