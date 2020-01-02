@@ -1,0 +1,53 @@
+
+environment:
+  host:
+    os: 'windows'
+    flavor: 'datacenter'
+    version: 2016
+  runtime:
+    provider: 'appcontainer'
+    image: 'cdpxwin.azurecr.io/legacy/global/vse2017u5-ext-win14393.1884:1.0'
+    source_mode: 'link'
+version:
+  name: 'Build-OMS-Agent-for-Linux'
+
+  major: 1
+  minor: 0
+  tag: 'test'
+  system: 'patch'
+
+workspace_options:
+  download_current_artifacts: true
+  force_workspace_wipe: false
+  enable_legacy_networking: true
+
+versioning:
+  commands:
+
+static_analysis_options:
+
+# This phase will copy the *.sha256sums from previous artifacts of all modules into a specific directory under the GIT_SOURCE
+# !!! CDP cannot sign files outside the GIT_SOURCE folder path 
+build:
+  commands:
+    - !!buildcommand
+      name: 'DSC Signing'
+      command: 'pipeline-dsc-signing.cmd'
+      artifacts:
+        - from: 'pipeline-signing\dsc\signing'
+          to: 'buildoutput'
+          include:
+            - '**/*'
+          signing_options:
+            profile: 'CP-453387-pgpdetached'
+
+package:
+  commands:
+    - !!buildcommand
+      name: 'DSC Re-Package With Signed Artifacts'
+      command: 'pipeline-dsc-packaging.cmd'
+      artifacts:
+        - from: 'pipeline-signing\dsc\signing'
+          to: 'buildoutput\dsc_signing'
+          include:
+            - '**/*'          
