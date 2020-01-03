@@ -1,0 +1,1 @@
+echo ##vso[build.updatebuildnumber]1.12.25-%CDP_REVISION_NUMBER%
