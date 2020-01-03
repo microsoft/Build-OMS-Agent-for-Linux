@@ -39,7 +39,7 @@ versioning:
   commands:
     - !!defaultcommand
       name: 'Versioning'
-      command: 'pipeline-version.cmd'
+      command: 'pipeline-version.sh'
 
 workspace_options:
   force_workspace_wipe: false
