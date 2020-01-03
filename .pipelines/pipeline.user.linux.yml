@@ -32,12 +32,12 @@ version:
   major: 1
   minor: 12
   tag: 'alpha'
-  system: 'buildrevision'         # Must be one of patch, buildrevision, revisioncounter or custom. Other schemes can be added based on feedback.
+  system: 'custom'         # Must be one of patch, buildrevision, revisioncounter or custom. Other schemes can be added based on feedback.
   exclude_commit: true            # Set this to true if you would like to exclude the commit hash from the build number.  Defaults to false.
 
 versioning:
   commands:
-    - !!buildcommand
+    - !!defaultcommand
       name: 'Versioning'
       command: 'pipeline-version.cmd'
 
