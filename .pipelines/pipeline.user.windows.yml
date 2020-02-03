@@ -60,6 +60,16 @@ build:
             - '**/*'
           signing_options:
             profile: 'CP-453387-pgpdetached'
+    - !!buildcommand
+      name: 'OMS ShellBundle Signing'
+      command: 'pipeline-oms-signing.cmd'
+      artifacts:
+        - from: 'pipeline-signing\oms-signing'
+          to: 'buildoutput'
+          include:
+            - '**/*'
+          signing_options:
+            profile: 'CP-453387-pgpdetached'
 
 package:
   commands:
