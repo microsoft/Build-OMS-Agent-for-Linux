@@ -8,6 +8,10 @@ dir %CDP_TEMP_PRIOR_DROP_FOLDER_CONTAINER_PATH%\current\drop
 
 mkdir %DIR%\%SIGNING_DIR%
 
+dir %CDP_TEMP_PRIOR_DROP_FOLDER_CONTAINER_PATH%\current\drop
+dir %CDP_TEMP_PRIOR_DROP_FOLDER_CONTAINER_PATH%\current\drop\Build_x64\outputs\build\buildoutput\Linux_ULINUX_1.0_x64_64_Release
+dir %CDP_TEMP_PRIOR_DROP_FOLDER_CONTAINER_PATH%\current\drop\Build_x64\outputs\build\buildoutput\Linux_ULINUX_1.0_x64_64_Release\dsc
+
 Xcopy /E /I /Y %CDP_TEMP_PRIOR_DROP_FOLDER_CONTAINER_PATH%\current\drop\Build_x64\outputs\build\buildoutput\Linux_ULINUX_1.0_x64_64_Release\dsc %DIR%\%SIGNING_DIR%\dsc
 
 mkdir "%DIR%\%SIGNING_DIR%\dsc\signing"
