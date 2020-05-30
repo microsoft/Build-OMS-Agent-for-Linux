@@ -40,7 +40,6 @@ versioning:
       command: 'pipeline-version.cmd'
 
 workspace_options:
-  download_current_artifacts: true
   force_workspace_wipe: false
   enable_legacy_networking: true
 
