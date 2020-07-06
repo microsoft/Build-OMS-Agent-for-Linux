@@ -45,6 +45,11 @@ workspace_options:
 
 static_analysis_options:
 
+# Code signing validation for Linux-built, Windows-signed pipelines 
+# is apparently broken, so we will exclude the flagged files for now
+signing_options:
+  codesign_validation_glob_pattern: '-:regex|**\*.psd1'
+
 # This phase will copy the *.sha256sums from previous artifacts of all modules into a specific directory under the GIT_SOURCE
 # !!! CDP cannot sign files outside the GIT_SOURCE folder path 
 build:
