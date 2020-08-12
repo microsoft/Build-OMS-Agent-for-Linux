@@ -32,11 +32,11 @@
 			<SubscriptionId>306ee7f1-3d0a-4605-9f39-ff253cc02708</SubscriptionId>
             <AzureLocation>East US</AzureLocation>
 			<AzureResourceGroupName>MMALinuxExtPublish</AzureResourceGroupName>
-			<KVPathForCertSecret>https://mmalinuxpublishing-kv.vault.azure.net/secrets/OMSLinuxAgentEv2ExtensionPublishing/7718f83d99354c1a89d2bfd269ed39a9</KVPathForCertSecret> 
+			<KVPathForCertSecret>https://mmalinuxpublishing-kv.vault.azure.net/secrets/OMSLinuxAgentEv2ExtensionPublishing</KVPathForCertSecret> 
 			<ClassicStorageAccountName>mmalinuxextpubclassicsa</ClassicStorageAccountName>
 			<ClassicContainerName>omslinuxcontainer</ClassicContainerName>
 			<StorageAccountEndpointSuffix>blob.core.windows.net</StorageAccountEndpointSuffix>
-			<KVClassicStorageConnection>https://samplekeyvault.vault.azure.net/secrets/storageaccountconnectionstring</KVClassicStorageConnection>
+			<KVClassicStorageConnection>https://mmalinuxpublishing-kv.vault.azure.net/secrets/mmalinuxextpubclassicsa</KVClassicStorageConnection>
 			<SDPRegions>
 			<!-- 
 				The stages are specified as per geo-region pairs and SDP policy. Stage1 must be Canary, Stage 2 must have 2 regions.
