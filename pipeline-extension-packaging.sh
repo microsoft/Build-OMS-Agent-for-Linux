@@ -51,9 +51,10 @@ cd ${SOURCE_DIR}/azure-linux-extensions/OmsAgent
 # Create Ev2 artifacts
 echo "Creating Ev2 artifacts"
 cd ${SOURCE_DIR}
-pwsh ${SOURCE_DIR}/ev2/EV2VMExtnPackager.ps1 -outputDir ${OUTPUT_DIR}/ -ExtensionInfoFile ${SOURCE_DIR}/ev2/extension-info.xml -BuildVersion ${OMS_EXTENSION_VERSION} -UseBuildVersionForExtnVersion -ReplaceBuildVersionInFileName
+mkdir -p ${OUTPUT_DIR}/ev2
+pwsh ${SOURCE_DIR}/ev2/EV2VMExtnPackager.ps1 -outputDir ${OUTPUT_DIR}/ev2/ -ExtensionInfoFile ${SOURCE_DIR}/ev2/ExtensionInfo.xml -BuildVersion ${OMS_EXTENSION_VERSION} -UseBuildVersionForExtnVersion -ReplaceBuildVersionInFileName
 
-mv ${OUTPUT_DIR}/oms*.zip ${OUTPUT_DIR}/ServiceGroupRoot/
+mv ${OUTPUT_DIR}/oms*.zip ${OUTPUT_DIR}/ev2/ServiceGroupRoot/
 
 tree -f ${OUTPUT_DIR}/
 

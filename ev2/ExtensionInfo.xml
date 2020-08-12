@@ -1,32 +1,8 @@
 <!-- 
     Run CDPX
-￼
-
-￼
-
-Link settings
-Click to link this task's settings to shared pipeline parameters.
-￼
-
-View YAML
-Click to view YAML snippet for this task
-￼
-
-Remove
-Click to remove the task
-Task version
-￼
-Display name
-￼
-Pipeline Stage￼
-
-￼
-Logging Verbosity￼
-
-￼
-Control Options
-Output Variables
-Read docs: https://msazure.visualstudio.com/One/_wiki/wikis/One.wiki/57531/EDPEv2-Onboarding-Guide
+	Control Options
+	Output Variables
+	Read docs: https://msazure.visualstudio.com/One/_wiki/wikis/One.wiki/57531/EDPEv2-Onboarding-Guide
  -->
 <ExtensionInfo>
 	<ExtensionImage xmlns="http://schemas.microsoft.com/windowsazure">
