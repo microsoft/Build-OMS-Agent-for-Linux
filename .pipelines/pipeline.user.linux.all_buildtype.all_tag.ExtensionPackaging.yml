@@ -1,12 +1,12 @@
 
 environment:
   host:
-    os: 'windows'
-    flavor: 'datacenter'
-    version: 2016
+    os: 'linux'
+    flavor: 'ubuntu'
+    version: '16.04'
   runtime:
     provider: 'appcontainer'
-    image: 'cdpxwin.azurecr.io/legacy/global/vse2017u5-ext-win14393.1884:1.0'
+    image: 'cdpxlinux.azurecr.io/global/ubuntu-1804-all:1.0'
     source_mode: 'link'
 
 # The following is a metadata section that describes the versioning scheme and basic version datacenter to use. This data will be used to
@@ -31,57 +31,37 @@ version:
   name: 'OMSLinuxAgent'
   tag: 'alpha'
   system: 'custom'         # Must be one of patch, buildrevision, revisioncounter or custom. Other schemes can be added based on feedback.
-  exclude_commit: true              # Set this to true if you would like to exclude the commit hash from the build number.  Defaults to false.
+  exclude_commit: true            # Set this to true if you would like to exclude the commit hash from the build number.  Defaults to false.
 
 versioning:
   commands:
     - !!defaultcommand
       name: 'Versioning'
-      command: 'pipeline-version.cmd'
+      command: 'pipeline-version.sh'
 
 workspace_options:
+  download_current_artifacts: true
   force_workspace_wipe: false
   enable_legacy_networking: true
 
 static_analysis_options:
 
-# Code signing validation for Linux-built, Windows-signed pipelines 
-# is apparently broken, so we will exclude the flagged files for now
-signing_options:
-  codesign_validation_glob_pattern: '-:regex|**\*.psd1'
+restore:
+  commands:
+    - !!defaultcommand
+      name: 'Install'
+      command: 'pipeline-extension-packaging-restore.sh'
 
-# This phase will copy the *.sha256sums from previous artifacts of all modules into a specific directory under the GIT_SOURCE
-# !!! CDP cannot sign files outside the GIT_SOURCE folder path 
 build:
   commands:
     - !!buildcommand
-      name: 'DSC Signing'
-      command: 'pipeline-dsc-signing.cmd'
+      name: 'Build'
+      command: 'pipeline-extension-packaging.sh'
       artifacts:
-        - from: 'pipeline-signing\dsc\signing'
+        - from: 'pipeline-extension-packaging'
           to: 'buildoutput'
           include:
             - '**/*'
-          signing_options:
-            profile: 'CP-453387-pgpdetached'
-    - !!buildcommand
-      name: 'OMS ShellBundle Signing'
-      command: 'pipeline-oms-signing.cmd'
-      artifacts:
-        - from: 'pipeline-signing\oms-signing'
-          to: 'buildoutput'
-          include:
-            - '**/*'
-          signing_options:
-            profile: 'CP-453387-pgpdetached'
 
 package:
   commands:
-    - !!buildcommand
-      name: 'DSC Re-Package With Signed Artifacts'
-      command: 'pipeline-dsc-packaging.cmd'
-      artifacts:
-        - from: 'pipeline-signing\dsc\signing'
-          to: 'buildoutput\dsc_signing'
-          include:
-            - '**/*'          
