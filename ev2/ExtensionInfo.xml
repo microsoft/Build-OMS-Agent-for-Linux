@@ -36,7 +36,7 @@
 			<ClassicStorageAccountName>mmalinuxextpubclassicsa</ClassicStorageAccountName>
 			<ClassicContainerName>omslinuxcontainer</ClassicContainerName>
 			<StorageAccountEndpointSuffix>blob.core.windows.net</StorageAccountEndpointSuffix>
-			<KVClassicStorageConnection>https://mmalinuxpublishing-kv.vault.azure.net/secrets/mmalinuxextpubclassicsa</KVClassicStorageConnection>
+			<KVClassicStorageConnection>https://mmalinuxpublishing-kv.vault.azure.net/secrets/MMALinuxStorageAccountSecretEv2</KVClassicStorageConnection>
 			<SDPRegions>
 			<!-- 
 				The stages are specified as per geo-region pairs and SDP policy. Stage1 must be Canary, Stage 2 must have 2 regions.
