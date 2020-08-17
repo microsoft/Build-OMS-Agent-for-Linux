@@ -12,7 +12,7 @@
 	    <Label>Microsoft Operations Management Suite Agent for Linux</Label>
 		<HostingResources>VmRole</HostingResources>
 		<MediaLink></MediaLink>
-	    <Description></Description>
+	    <Description>OmsAgentForLinux</Description>
 		<IsInternalExtension>true</IsInternalExtension>
 		<Eula>https://github.com/microsoft/OMS-Agent-for-Linux/blob/master/LICENSE</Eula>
 		<PrivacyUri>http://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx</PrivacyUri>
@@ -34,9 +34,9 @@
 			<AzureResourceGroupName>MMALinuxExtPublish</AzureResourceGroupName>
 			<KVPathForCertSecret>https://mmalinuxpublishing-kv.vault.azure.net/secrets/OMSLinuxAgentEv2ExtensionPublishing</KVPathForCertSecret> 
 			<ClassicStorageAccountName>mmalinuxextpubclassicsa</ClassicStorageAccountName>
-			<ClassicContainerName>omslinuxcontainer</ClassicContainerName>
+			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
 			<StorageAccountEndpointSuffix>blob.core.windows.net</StorageAccountEndpointSuffix>
-			<KVClassicStorageConnection>https://mmalinuxpublishing-kv.vault.azure.net/secrets/mmalinuxextpubclassicsa</KVClassicStorageConnection>
+			<KVClassicStorageConnection>https://mmalinuxpublishing-kv.vault.azure.net/secrets/MMALinuxStorageAccountSecretEv2</KVClassicStorageConnection>
 			<SDPRegions>
 			<!-- 
 				The stages are specified as per geo-region pairs and SDP policy. Stage1 must be Canary, Stage 2 must have 2 regions.
