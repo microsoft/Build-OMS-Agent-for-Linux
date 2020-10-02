@@ -4,31 +4,31 @@
  -->
 <ExtensionInfo>
 	<ExtensionImage xmlns="http://schemas.microsoft.com/windowsazure">
-	    <ProviderNameSpace>Microsoft.EnterpriseCloud.Monitoring</ProviderNameSpace>
-	    <Type>OmsAgentForLinux</Type>
-	    <Version></Version>
-	    <Label>Microsoft Operations Management Suite Agent for Linux</Label>
+		<ProviderNameSpace>Microsoft.EnterpriseCloud.Monitoring</ProviderNameSpace>
+		<Type>OmsAgentForLinux</Type>
+		<Version></Version>
+		<Label>Microsoft Operations Management Suite Agent for Linux</Label>
 		<HostingResources>VmRole</HostingResources>
 		<MediaLink></MediaLink>
-	    <Description>OmsAgentForLinux</Description>
+		<Description>OmsAgentForLinux</Description>
 		<IsInternalExtension>true</IsInternalExtension>
 		<Eula>https://github.com/microsoft/OMS-Agent-for-Linux/blob/master/LICENSE</Eula>
 		<PrivacyUri>http://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx</PrivacyUri>
 		<HomepageUri>https://github.com/Microsoft/OMS-Agent-for-Linux</HomepageUri>
 		<IsJsonExtension>true</IsJsonExtension>
-	    <!-- Windows or Linux -->
-	    <SupportedOS>Linux</SupportedOS>
+		<SupportedOS>Linux</SupportedOS>
 		<CompanyName>Microsoft</CompanyName>
 	</ExtensionImage>
 	<PipelineConfig>
 		<ExtensionZipFileName>oms==buildversion==.zip</ExtensionZipFileName>
 		<ExtensionShortName>OmsAgentForLinux</ExtensionShortName>
 		<ExtensionIsAlwaysInternal>false</ExtensionIsAlwaysInternal>
+		<RolloutTypes>Major;Hotfix</RolloutTypes>
 	</PipelineConfig>
 	<CloudTypes>
-	    <Public>
+		<Public>
 			<SubscriptionId>306ee7f1-3d0a-4605-9f39-ff253cc02708</SubscriptionId>
-            <AzureLocation>East US</AzureLocation>
+			<AzureLocation>East US</AzureLocation>
 			<AzureResourceGroupName>MMAWinExtPublish</AzureResourceGroupName>
 			<KVPathForCertSecret>https://mmawinpublishing-kv.vault.azure.net/secrets/MMAWinExt-Publishing</KVPathForCertSecret> 
 			<ClassicStorageAccountName>mmawinextpubclassicsa</ClassicStorageAccountName>
@@ -46,6 +46,20 @@
 				<Stage8>Central US EUAP;East US 2 EUAP;West Central US;North Central US;West US;East Asia;Australia East;Australia Central;Canada Central;North Europe;France Central;West India;Japan East;Korea Central;East US 2;Brazil South;South Africa North;Switzerland North;UK West;UAE North;East US;Norway East;Central India;West US 2;Southeast Asia;Australia Southeast;South Central US;Canada East;Japan West;Korea South;Switzerland West;UAE Central</Stage8>
 				<Stage9>Central US EUAP;East US 2 EUAP;West Central US;North Central US;West US;East Asia;Australia East;Australia Central;Canada Central;North Europe;France Central;West India;Japan East;Korea Central;East US 2;Brazil South;South Africa North;Switzerland North;UK West;UAE North;East US;Norway East;Central India;West US 2;Southeast Asia;Australia Southeast;South Central US;Canada East;Japan West;Korea South;Switzerland West;UAE Central;Australia Central 2;France South;South India;West Europe;Central US;Norway West;South Africa West;UK South</Stage9>
 			</SDPRegions>
+			<EnableMDMHealthCheck>true</EnableMDMHealthCheck>
+			<EV2HealthChecks>
+                <MDMHealthChecks>
+                    <MDMHealthCheck RolloutTypes="Major" Stages="Stage1;Stage2;Stage3;Stage4;Stage5;Stage6;Stage7;Stage8;Stage9" mdmHealthCheckEndPoint="https://prod4.prod.microsoftmetrics.com:1886/RecoveryService" HealthCheckName="MyHealthCheck" monitoringAccountName="CDMMdsAdmin" waitBeforeMonitorTimeInMinutes="30" monitorTimeInMinutes="1410" >
+						<HealthResources>
+                            <HealthResource HealthResourceName="MyHealth" ResourceType="MyResource" InjectStageAsDimension="true">
+                                <Dimensions>
+                                    <!-- <Dimension dimensionName="MyDimension">dimValue</Dimension> -->
+                                </Dimensions>
+                            </HealthResource>
+                        </HealthResources>
+                    </MDMHealthCheck>
+                </MDMHealthChecks>
+            </EV2HealthChecks>
 		</Public>
 		<Fairfax>
 			<SubscriptionId>357ae9bc-0e22-4155-bfdb-c08b9b4d2290</SubscriptionId>
@@ -75,8 +89,9 @@
 			<KVClassicStorageConnection>https://extensionpublishkv.vault.azure.cn/secrets/ExtensionPublishingMooncake</KVClassicStorageConnection>
 			<SDPRegions>
 				<Stage1>China North</Stage1>
-				<Stage2>China North;China East;</Stage2>
-				<Stage3>China North;China East;China North 2;China East 2</Stage3>
+                <Stage2>China North;China North 2</Stage2>
+                <Stage3>China North;China North 2;China East</Stage3>
+                <Stage4>China North;China North 2;China East;China East 2</Stage4>
 			</SDPRegions>
 		</Mooncake>
 		<USNat>

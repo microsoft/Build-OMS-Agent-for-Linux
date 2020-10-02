@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Generate the artifacts required for EV2 deployment for all environments for publishing VM Extensions
 #>
@@ -197,14 +197,18 @@ function Get-TemplateFile
         "Extensions":  [
                   ],
         "parameters":  {
-                       }
+                       },
+        "mdmHealthChecks": [ 
+                  ]
     }
 
 #>
 function Get-RolloutParameterFileTemplate
 {
     [CmdletBinding()]
-    param()
+    param(
+        [bool] $MdmHealthChecksPresent
+    )
 
     $hashTemplateParameterFile = [ordered]@{}
     $emptyArray = @()
@@ -217,6 +221,11 @@ function Get-RolloutParameterFileTemplate
         "name" = "wait24Hours"
         "properties" = @{ "duration" = "PT24H" }
     }))
+    
+    if ($MdmHealthChecksPresent -eq $true)
+    {
+        $hashTemplateParameterFile.Add('mdmHealthChecks',$emptyArray)
+    }
     
     $hashTemplateParameterFile | ConvertTo-Json -Depth 10
 }
@@ -299,6 +308,53 @@ function Get-ConnectionParametersForRolloutParams
     $ParametersValues_hash.Add("ConnectionProperties", $ConnectionPropertiesHashtable)
 
     $ParametersValues_hash
+}
+
+<#
+.SYNOPSIS
+    Get MDM health checks part of the Rollout parameters
+#>
+function Get-MdmHealthChecksForRolloutParams
+{
+    [CmdletBinding()]
+    param(
+        [System.Object[]] $MDMHealthChecks,
+        [string] $StageName
+    )
+
+    $ParametersValuesHashList = @()
+    $MDMHealthChecks |foreach {
+        $ParametersValues_hash = [ordered]@{}
+        $ParametersValues_hash.Add("name", "$($_.HealthCheckName)$($StageName)")
+        $ParametersValues_hash.Add("monitoringAccountName", "$($_.monitoringAccountName)")
+        $ParametersValues_hash.Add("waitBeforeMonitorTimeInMinutes", "$($_.waitBeforeMonitorTimeInMinutes)")
+        $ParametersValues_hash.Add("monitorTimeInMinutes", "$($_.monitorTimeInMinutes)")
+        $ParametersValues_hash.Add("mdmHealthCheckEndPoint", "$($_.mdmHealthCheckEndPoint)")
+        $HealthResourcesList = @()
+        $healthResources = ($_.HealthResources | select -ExpandProperty childnodes | where {$_.name -like 'HealthResource'})
+        $healthResources | foreach {
+            $HealthResource_hash = [ordered]@{}
+            $HealthResource_hash.Add("name", "$($_.HealthResourceName)")
+            $HealthResource_hash.Add("resourceType", "$($_.ResourceType)")
+            $Dimensions = ($_.Dimensions | select -ExpandProperty childnodes | where {$_.name -like 'Dimension'})
+            $Dimension_hash = [ordered]@{}
+            if($_.InjectStageAsDimension -eq "true" )
+            {
+                $Dimension_hash.Add("Stage", $StageName)
+            }
+
+            $Dimensions | foreach {
+                $Dimension_hash.Add("$($_.dimensionName)", "$($_.'#text')")
+            }
+            
+            $HealthResource_hash.Add("dimensions", $Dimension_hash)
+            $HealthResourcesList += $HealthResource_hash
+        }
+        $ParametersValues_hash.Add("healthResources", $HealthResourcesList)
+        $ParametersValuesHashList += ($ParametersValues_hash)
+    }
+        
+    return $ParametersValuesHashList
 }
 
 <#
@@ -459,11 +515,13 @@ function Get-RolloutParameterFile
                                         -AppId $ApplicationId `
                                         -TenantId $TenantId
 
+    $EV2HealthChecks = $($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).EV2HealthChecks)
+    $EnableMDMHealthCheck = $($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).EnableMDMHealthCheck) -ieq "true"
     for($i=1; $i -le $SDPStageCount; $i++)
     {
         $stageName = "Stage$($i)"
-        $ExtnRegions = $($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).SDPRegions.$stageName)
 
+        $ExtnRegions = $($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).SDPRegions.$stageName)
         Get-RolloutParameterFileForPromote -KVCertificateSecretPath $KVCertificateSecretPath `
                                             -SubscriptionId $PublishingSubscriptionId `
                                             -ExtnNamespace $ExtnNamespace `
@@ -480,7 +538,9 @@ function Get-RolloutParameterFile
                                             -KVPathForAppCert $KVPathForAppCert `
                                             -KVPathForAppSecret $KVPathForAppSecret `
                                             -AppId $ApplicationId `
-                                            -TenantId $TenantId
+                                            -TenantId $TenantId `
+                                            -EnableMDMHealthCheck $EnableMDMHealthCheck `
+                                            -EV2HealthChecks $EV2HealthChecks
     }
 
     # Get parameters for promoting the extension in ALL regions (value = Public)
@@ -768,15 +828,26 @@ function Get-RolloutParameterFileForPromote
         [string] $KVPathForAppCert,
         [string] $KVPathForAppSecret,
         [string] $AppId,
-        [string] $TenantId
+        [string] $TenantId,
+        [bool] $EnableMDMHealthCheck,
+        [System.Xml.XmlElement] $EV2HealthChecks
         )
 
     $ExtnPublishingStageName = "Promote-$($SDPStage)"
     $ExtensionOperationName = "UpdateExtension"
     $FileWithPath = Join-Path -Path $ServiceGroupRoot -ChildPath "Parameters" | Join-Path -ChildPath "Params_$($CloudName)_$($ExtnShortName)_Promote_$($SDPStage).json"
+    
+    $MdmHealthChecksPresent = $false
+    if ($EnableMDMHealthCheck -eq $true)
+    {
+        $MDMHealthChecks = @()
+        $MDMHealthChecks += ($EV2HealthChecks.MDMHealthChecks | select -ExpandProperty childnodes| where {$_.name -like 'MDMHealthCheck' -and $_.Stages -like "*$SDPStage*"})
+        $MdmHealthChecksPresent = ($MDMHealthChecks.Count -gt 0)
+    }
 
     # Generate Rollout Parameters
-    [string] $Parameter_Template_File = Get-RolloutParameterFileTemplate
+    [string] $Parameter_Template_File = Get-RolloutParameterFileTemplate -MdmHealthChecksPresent $MdmHealthChecksPresent
+     
     $Parameters_json = ConvertFrom-Json -InputObject $Parameter_Template_File
 
     $ParametersValues_hash = [ordered]@{}
@@ -802,7 +873,11 @@ function Get-RolloutParameterFileForPromote
     $ParametersValues_hash.Add("PayloadProperties", $PayloadHashtable)
     
     $Parameters_json.Extensions += $ParametersValues_hash
-
+    if ($MdmHealthChecksPresent -eq $true)
+    {
+        $Parameters_json.mdmHealthChecks += Get-MdmHealthChecksForRolloutParams -MDMHealthChecks $MDMHealthChecks -StageName $SDPStage
+    }
+    
     $Parameters_json | ConvertTo-Json -Depth 30 | out-file $FileWithPath -Encoding utf8 -Force
 }
 
@@ -1315,7 +1390,8 @@ function Get-AllRolloutSpecFiles
     param(
         [string] $ServiceGroupRoot,
         [string] $CloudName,
-        [xml] $ExtnInfoXml
+        [xml] $ExtnInfoXml,
+        [string] $RolloutTypes
         )
 
     $RolloutSpecs = @()
@@ -1325,7 +1401,7 @@ function Get-AllRolloutSpecFiles
 
     $ExtnShortName = $ExtnInfoXml.ExtensionInfo.PipelineConfig.ExtensionShortName
     $ServiceModelPath = "$($CloudName)_$($ExtnShortName)_ServiceModel.json"
-
+    
     # ===============================
     # List all extensions
     $StepName = "Get-PublishedExtensions"
@@ -1379,6 +1455,12 @@ function Get-AllRolloutSpecFiles
     # ===============================
     # Promote SDP stages
 
+    $RolloutTypeList = $RolloutTypes.Split(";",[System.StringSplitOptions]::RemoveEmptyEntries)
+    if($RolloutTypeList.Count -eq 0)
+    {
+       $RolloutTypeList = @('Hotfix')
+    }
+    
     $SDPStageCount = ($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).SDPRegions | select -ExpandProperty childnodes | where {$_.name -like 'Stage*'}).Count
 
     for($i=1; $i -le $SDPStageCount; $i++)
@@ -1388,18 +1470,41 @@ function Get-AllRolloutSpecFiles
         $StepName = "Promote-$stageName"
         $TargetName = "Promote$stageName"
         $ActionName = "Promote-$stageName"
-        $RolloutSpecFileName = "RolloutSpec_$($CloudName)_$($ExtnShortName)_Promote$stageName.json"
-        $RolloutSpecFileWithPath = Join-Path -Path $ServiceGroupRoot -ChildPath $RolloutSpecFileName
-        $RolloutSpecs += $RolloutSpecFileWithPath
+        for($j=0; $j -lt $RolloutTypeList.Count; $j++)
+        {
+            $RolloutTypeSufffix = ''
+            $RolloutType=$RolloutTypeList[$j]
+            $MDMHealthCheckActionsToAdd = ''
+            if($RolloutType -ne 'Hotfix')
+            {
+                $RolloutTypeSufffix = $RolloutType + "_"
+            }
+            
+            $EnableMDMHealthCheck = ($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).EnableMDMHealthCheck)
+            if($EnableMDMHealthCheck -eq $true)
+            {
+                $MDMhealthChecks = @()
+                $MDMhealthChecks += ($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).EV2HealthChecks.MDMHealthChecks | select -ExpandProperty childnodes| where {$_.name -like 'MDMHealthCheck' -and $_.Stages -like "*$stageName*" -and $_.RolloutTypes -like "*$RolloutType*"})
+                $MDMHealthChecks |foreach {
+                    $MDMHealthCheckActionsToAdd += ",mdmHealthCheck/" + $_.HealthCheckName + $stageName
+                }
+            }
+            
+            $RolloutSpecFileName = "RolloutSpec_$($CloudName)_$($ExtnShortName)_$($RolloutTypeSufffix)Promote$stageName.json"
+            $RolloutSpecFileWithPath = Join-Path -Path $ServiceGroupRoot -ChildPath $RolloutSpecFileName
+            $RolloutSpecs += $RolloutSpecFileWithPath
 
-        Get-RolloutSpecFile -StepName $StepName `
+            Get-RolloutSpecFile -StepName $StepName `
                             -TargetName $TargetName `
                             -ActionName $ActionName `
                             -ServiceModelPath $ServiceModelPath `
                             -ExtnShortName $ExtnShortName `
                             -ExtnVersion $ExtnVersion `
-                            -RolloutSpecFileWithPath $RolloutSpecFileWithPath
-        }
+                            -RolloutSpecFileWithPath $RolloutSpecFileWithPath `
+                            -RolloutType $RolloutType `
+                            -MDMHealthCheckActionsToAdd $MDMHealthCheckActionsToAdd
+        }                    
+    }
 
     # ===============================
     # Promote All
@@ -1468,10 +1573,14 @@ function Get-AllRolloutSpecFiles
        }
        
        $NewOrchestratedStep.dependsOn +=$LastOrchestratedStep.Name
+
+       $MdmHealthModelAddedInLastStep = ($LastOrchestratedStep.Actions | %{ $_ -like "mdmHealthCheck/*"}) -contains $true
+
        if($NewOrchestratedStep.Name.StartsWith("Promote", [System.StringComparison]::InvariantCultureIgnoreCase) -and 
-          $LastOrchestratedStep.Name.StartsWith("Promote", [System.StringComparison]::InvariantCultureIgnoreCase))
+          $LastOrchestratedStep.Name.StartsWith("Promote", [System.StringComparison]::InvariantCultureIgnoreCase) -and
+          (-not $MdmHealthModelAddedInLastStep))
        {
-           # Adding 24 hour wait if both the last and the new orchestrated steps are "Promote" steps.
+           # Adding 24 hour wait if both the last and the new orchestrated steps are "Promote" steps and there is no MDM health checks present in previous stage.
            $NewOrchestratedStep.Actions = @("wait/wait24Hours") + $NewOrchestratedStep.Actions
        }
 
@@ -1495,7 +1604,9 @@ function Get-RolloutSpecFile
         [string] $ServiceModelPath,
         [string] $ExtnShortName,
         [string] $ExtnVersion,
-        [string] $RolloutSpecFileWithPath
+        [string] $RolloutSpecFileWithPath,
+        [string] $RolloutType,
+        [string] $MDMHealthCheckActionsToAdd
         )
 
     $hashTemplateRolloutSpec = [ordered]@{}
@@ -1506,11 +1617,16 @@ function Get-RolloutSpecFile
 
     $hashTemplateRolloutSpec.Add('$schema',"http://schema.express.azure.com/schemas/2015-01-01-alpha/RolloutSpec.json")
     $hashTemplateRolloutSpec.Add("ContentVersion","1.0.0.0")
-
+    
+    if($RolloutType -eq '')
+    {
+        $RolloutType="Hotfix"
+    }
+    
     $rolloutMetadataHashtable = @{}
     $rolloutMetadataHashtable.Add("ServiceModelPath", $ServiceModelPath)
     $rolloutMetadataHashtable.Add("Name", "$ExtnShortName $ExtnVersion")
-    $rolloutMetadataHashtable.Add("RolloutType", "Hotfix")
+    $rolloutMetadataHashtable.Add("RolloutType", $RolloutType)
 
     $ParametersHash = @{}
     $ParametersHash.Add("ServiceGroupRoot","ServiceGroupRoot")
@@ -1531,6 +1647,7 @@ function Get-RolloutSpecFile
     $OrchestratedStepHashTable.Add("TargetType","ServiceResource")
     $OrchestratedStepHashTable.Add("TargetName","$TargetName")
     $ActionsArray = @("Extension/$($ActionName)")
+    $ActionsArray += ($MDMHealthCheckActionsToAdd.Split(",",[System.StringSplitOptions]::RemoveEmptyEntries))
     $OrchestratedStepHashTable.Add("Actions",$ActionsArray)
 
     $OrchestratedSteps += $OrchestratedStepHashTable
@@ -1599,7 +1716,11 @@ function Validate-ExtensionInfoFile
     IfNullThrowAndExit -inputObject $ExtnInfoXml.ExtensionInfo.PipelineConfig.ExtensionShortName.Trim() -ErrorMessage "Extension ShortName is null."
     IfNullThrowAndExit -inputObject $ExtnInfoXml.ExtensionInfo.PipelineConfig.ExtensionZipFileName.Trim() -ErrorMessage "Extension ZipFile is null."
     IfNullThrowAndExit -inputObject $ExtnInfoXml.ExtensionInfo.PipelineConfig.ExtensionIsAlwaysInternal.Trim() -ErrorMessage "ExtensionIsAlwaysInternal is null."
-
+    if($ExtnInfoXml.ExtensionInfo.PipelineConfig.RolloutTypes -ne $null)
+    {
+        $PipelineConfigRolloutTypes = $ExtnInfoXml.ExtensionInfo.PipelineConfig.RolloutTypes.Split(";",[System.StringSplitOptions]::RemoveEmptyEntries)
+    }
+    
     # ExtensionIsAlwaysInternal must be True or False only
     if(!($ExtnInfoXml.ExtensionInfo.PipelineConfig.ExtensionIsAlwaysInternal -ieq "True" -or $ExtnInfoXml.ExtensionInfo.PipelineConfig.ExtensionIsAlwaysInternal -ieq "False"))
     {
@@ -1696,6 +1817,14 @@ function Validate-ExtensionInfoFile
             }
         }
 
+        $EnableMDMHealthCheck = $($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).EnableMDMHealthCheck)
+        $MDMHealthChecks = @()
+        $MDMHealthChecks += ($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).EV2HealthChecks.MDMHealthChecks | select -ExpandProperty childnodes| where {$_.name -like 'MDMHealthCheck' -and $_.Stages -like "*Stage*"})
+        if($EnableMDMHealthCheck -eq $true -and $MDMHealthChecks.Count -eq 0)
+        {
+            ThrowAndExit -ErrorMessage "If EnableMDMHealthCheck is enabled, then the extension info must include MDMHealthChecks child node inside EV2HealthChecks node for at least one stage in Cloud '$($CloudName)'."
+        }
+            
         IfNullThrowAndExit -inputObject $ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).SDPRegions -ErrorMessage "SDPRegions for Cloud $($CloudName) is not valid."
 
         $SDPStageCount = ($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).SDPRegions | select -ExpandProperty childnodes | where {$_.name -like 'Stage*'}).Count
@@ -1726,6 +1855,33 @@ function Validate-ExtensionInfoFile
             {
                 ThrowAndExit -ErrorMessage "Regions in $($nextStage) must include the regions in $($stageName) in Cloud '$($CloudName)'."
             }
+            
+            $MDMHealthChecks = ($ExtnInfoXml.ExtensionInfo.CloudTypes.$($CloudName).EV2HealthChecks.MDMHealthChecks | select -ExpandProperty childnodes| where {$_.name -like 'MDMHealthCheck' -and $_.Stages -like "*$stageName*"})
+            
+            if($EnableMDMHealthCheck -eq $true -and $MDMHealthChecks.Count -gt 0)
+            {
+                $MDMHealthChecks | foreach {
+                    IfNullThrowAndExit -inputObject $_.HealthCheckName -ErrorMessage "Each MDMHealthCheck must include HealthCheckName for Stage $($stageName) in Cloud '$($CloudName)'."
+                    IfNullThrowAndExit -inputObject $_.monitoringAccountName -ErrorMessage "Each MDMHealthCheck must include monitoringAccountName for Stage $($stageName) in Cloud '$($CloudName)'."
+                    IfNullThrowAndExit -inputObject $_.waitBeforeMonitorTimeInMinutes -ErrorMessage "Each MDMHealthCheck must include waitBeforeMonitorTimeInMinutes for Stage $($stageName) in Cloud '$($CloudName)'."
+                    IfNullThrowAndExit -inputObject $_.monitorTimeInMinutes -ErrorMessage "Each MDMHealthCheck must include monitorTimeInMinutes for Stage $($stageName) in Cloud '$($CloudName)'."
+                    IfNullThrowAndExit -inputObject $_.mdmHealthCheckEndPoint -ErrorMessage "Each MDMHealthCheck must include mdmHealthCheckEndPoint for Stage $($stageName) in Cloud '$($CloudName)'."
+                    $RolloutTypeList = $_.RolloutTypes.Split(";",[System.StringSplitOptions]::RemoveEmptyEntries)
+                    $RolloutTypeList | foreach {
+                        if (-not $PipelineConfigRolloutTypes.Contains($_))
+                        {
+                            ThrowAndExit -ErrorMessage "RolloutType $_ is not among the RolloutTypes mentioned in PipelineConfig i.e. $PipelineConfigRolloutTypes in Cloud '$($CloudName)'."
+                        }
+                    }
+                    
+                    $healthResources = ($_.HealthResources | select -ExpandProperty childnodes | where {$_.name -like 'HealthResource'})
+                    $healthResources | foreach {
+                        IfNullThrowAndExit -inputObject $_.HealthResourceName -ErrorMessage "Each HealthResource must include HealthCheckName for Stage $($stageName) in Cloud '$($CloudName)'."
+                        IfNullThrowAndExit -inputObject $_.ResourceType -ErrorMessage "Each MDMHealthCheck must include ResourceType for Stage $($stageName) in Cloud '$($CloudName)'."
+                    }
+                    
+                }                
+            }
         }
     }
 }
@@ -1754,7 +1910,7 @@ if(!$BuildVersion)
 {
     $BuildVersion = "1.0.0.0"
 }
-$buildVersionFile = Join-Path -Path $ServiceGroupRoot -ChildPath 'BuildVer.txt'
+$buildVersionFile = Join-Path -Path $ServiceGroupRoot -ChildPath 'buildver.txt'
 $BuildVersion | Out-File $buildVersionFile -Encoding utf8 -Force
 
 # Update the xml content
@@ -1779,6 +1935,7 @@ $Parameter_Template_File | Out-File $ParameterFile -Encoding utf8 -Force
 # Generate the Template file
 $void = Get-TemplateFile -TemplateFilePath $Template_path -TemplateFileName "UpdateConfig.Template.json"
 
+$RolloutTypes = $ExtensionInfoXmlContent.ExtensionInfo.PipelineConfig.RolloutTypes
 foreach ($CloudType in $ExtensionInfoXmlContent.ExtensionInfo.CloudTypes.ChildNodes)
 {
     $CloudName =  $CloudType.Name
@@ -1786,8 +1943,8 @@ foreach ($CloudType in $ExtensionInfoXmlContent.ExtensionInfo.CloudTypes.ChildNo
     Get-RolloutParameterFile -ServiceGroupRoot "$($ServiceGroupRoot)" -CloudName $CloudName -ExtnInfoXml $ExtensionInfoXmlContent -ExtensionInfoFileName $ExtensionInfoFileName
 
     Get-ServiceModelFile -ServiceGroupRoot $ServiceGroupRoot -CloudName $CloudName -ExtnInfoXml $ExtensionInfoXmlContent
-
-    Get-AllRolloutSpecFiles -ServiceGroupRoot $ServiceGroupRoot -CloudName $CloudName -ExtnInfoXml $ExtensionInfoXmlContent
+    
+    Get-AllRolloutSpecFiles -ServiceGroupRoot $ServiceGroupRoot -CloudName $CloudName -ExtnInfoXml $ExtensionInfoXmlContent -RolloutTypes $RolloutTypes
 }
 
 # save the file in Parameters folder, with encoding
