@@ -79,8 +79,9 @@
             <ApplicationId>3be67e0e-9984-48e1-b6f7-03a0a2922375</ApplicationId>
 			<SDPRegions>
 				<Stage1>China North</Stage1>
-				<Stage2>China North;China East;</Stage2>
-				<Stage3>China North;China East;China North 2;China East 2</Stage3>
+				<Stage2>China North;China North 2</Stage2>
+				<Stage3>China North;China North 2;China East</Stage3>
+				<Stage4>China North;China North 2;China East;China East 2</Stage4>
 			</SDPRegions>
 		</Mooncake>
 		<USNat>
