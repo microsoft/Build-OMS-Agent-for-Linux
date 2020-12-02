@@ -90,30 +90,36 @@
 		<USNat>
 			<SubscriptionId>f7c1d98b-c0f1-40e3-8a34-28db0f94e058</SubscriptionId>
 			<AzureResourceGroupName>TBD</AzureResourceGroupName>
-			<AzureLocation>USNat East</AzureLocation>
-			<KVPathForCertSecret>https://mmawinpublishing-kv.vault.cloudapi.eaglex.ic.gov/secrets/MMAWinExt-Publishing</KVPathForCertSecret>
-			<ClassicStorageAccountName>mmawinextexclassicsa</ClassicStorageAccountName>
-			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
-			<StorageAccountEndpointSuffix>blob.core.eaglex.ic.gov</StorageAccountEndpointSuffix>
-			<KVClassicStorageConnection>https://mmawinpublishing-kv.vault.cloudapi.eaglex.ic.gov/secrets/ClassicSA</KVClassicStorageConnection>
-			<SDPRegions>
-				<Stage1>USNat East</Stage1>
-				<Stage2>USNat East;USNat West</Stage2>
-			</SDPRegions>
+			<AzureLocation>usnat east</AzureLocation>
+			<ClassicStorageAccountName>wadclassicstorage</ClassicStorageAccountName>
+            <ClassicContainerName>omslinuxagentblob</ClassicContainerName>
+            <StorageAccountEndpointSuffix>blob.core.eaglex.ic.gov</StorageAccountEndpointSuffix>
+            <KVClassicStorageConnection>https://genevamds.vault.cloudapi.eaglex.ic.gov/secrets/Wadsecret/a4cd10ea4c7f4436ab3a4d250cf79a64</KVClassicStorageConnection>
+			<AuthenticationType>AppIdWithCert</AuthenticationType>
+			<KVPathForAppCert>https://genevamds.vault.cloudapi.eaglex.ic.gov/secrets/Genevacert</KVPathForAppCert>
+			<TenantId>70a90262-f46c-48aa-ac4c-37e37f8be1a2</TenantId>
+			<ApplicationId>0bf7500a-cbad-4d00-899c-620d8ae1f51f</ApplicationId>
+            <SDPRegions>
+                <Stage1>usnat east</Stage1>
+                <Stage2>usnat east;usnat west</Stage2>
+            </SDPRegions>
 		</USNat>
 		<USSec>
 			<SubscriptionId>3ea3cc79-5387-440a-b5db-8b9c68c71e84</SubscriptionId>
-			<AzureResourceGroupName>TBD</AzureResourceGroupName>
-			<AzureLocation>USSec East</AzureLocation>
-			<KVPathForCertSecret>https://mmawinpublishing-kv.vault.cloudapi.microsoft.scloud/secrets/MMAWinExt-Publishing</KVPathForCertSecret>
-			<ClassicStorageAccountName>mmawinextrxclassicsa</ClassicStorageAccountName>
-			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
-			<StorageAccountEndpointSuffix>blob.core.microsoft.scloud</StorageAccountEndpointSuffix>
-			<KVClassicStorageConnection>https://mmawinpublishing-kv.vault.cloudapi.microsoft.scloud/secrets/ClassicSA</KVClassicStorageConnection>
-			<SDPRegions>
-				<Stage1>USSec East</Stage1>
-				<Stage2>USSec East;USSec West</Stage2>
-			</SDPRegions>
+            <AzureResourceGroupName>TBD</AzureResourceGroupName>
+            <AzureLocation>ussec east</AzureLocation>
+            <ClassicStorageAccountName>wadrxpublishing</ClassicStorageAccountName>
+            <ClassicContainerName>omslinuxagentblob</ClassicContainerName>
+            <StorageAccountEndpointSuffix>blob.core.microsoft.scloud</StorageAccountEndpointSuffix>
+            <KVClassicStorageConnection>https://wadrxkv.cloudapi.microsoft.scloud/secrets/GenvaAgent/ed6c086eaa0451e845f2c10271ee552</KVClassicStorageConnection>
+            <AuthenticationType>AppIdWithCert</AuthenticationType>
+            <KVPathForAppCert>https://wadrxkv.vault.cloudapi.microsoft.scloud/secrets/publishingwadcert</KVPathForAppCert>
+            <TenantId>20ac2fc4-effc-4f76-ba7d-63c5ae134f5f</TenantId>
+            <ApplicationId>a8b6495d-6bc2-4d1a-9c0c-88af63c51d76</ApplicationId>
+            <SDPRegions>
+                <Stage1>ussec east</Stage1>
+                <Stage2>ussec east;ussec west</Stage2>
+            </SDPRegions>
 		</USSec>
 	</CloudTypes>
 </ExtensionInfo>
