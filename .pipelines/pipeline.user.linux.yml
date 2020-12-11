@@ -6,7 +6,7 @@ environment:
     version: '16.04'
   runtime:
     provider: 'appcontainer'
-    image: 'cdpxlinux.azurecr.io/user/geneva/oms-centos5-x64:2.0'
+    image: 'cdpxlinux.azurecr.io/user/geneva/oms-centos5-x64:3.0'
     source_mode: 'link'
 
 # The following is a metadata section that describes the versioning scheme and basic version datacenter to use. This data will be used to
