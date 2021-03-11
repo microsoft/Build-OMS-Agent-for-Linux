@@ -59,7 +59,10 @@
 			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
 			<StorageAccountEndpointSuffix>blob.core.usgovcloudapi.net</StorageAccountEndpointSuffix>
 			<KVClassicStorageConnection>https://mmawinpublishing-kv.vault.usgovcloudapi.net/secrets/ClassicSA</KVClassicStorageConnection>
-			<KVPathForCertSecret>https://mmawinpublishing-kv.vault.usgovcloudapi.net/secrets/MMAWinExt-Publishing</KVPathForCertSecret>
+            <AuthenticationType>AppIdWithCert</AuthenticationType>
+			<KVPathForAppCert>https://mmawinpublishing-kv.vault.usgovcloudapi.net/secrets/MMAWinExt-Publishing</KVPathForAppCert>
+			<TenantId>cab8a31a-1906-4287-a0d8-4eef66b95f6e</TenantId>
+			<ApplicationId>d1c87fe1-570b-4023-a1c3-44882d02f521</ApplicationId>
 			<SDPRegions>
 				<Stage1>USGov Texas</Stage1>
 				<Stage2>USGov Texas;USDoD Central</Stage2>
