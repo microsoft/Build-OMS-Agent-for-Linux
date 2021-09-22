@@ -75,11 +75,11 @@ fi
 
 # Increment build number
 if [ $P_INCREMENT -ne 0 ]; then
-    VERSION_OLD=`grep '^[A-Z]*_BUILDVERSION_BUILDNR' $VERSION_FILE | cut -d= -f2`
-    DATE_OLD=`grep '^[A-Z]*_BUILDVERSION_DATE' $VERSION_FILE | cut -d= -f2`
+    VERSION_OLD=$(grep '^[A-Z]*_BUILDVERSION_BUILDNR' $VERSION_FILE | cut -d= -f2)
+    DATE_OLD=$(grep '^[A-Z]*_BUILDVERSION_DATE' $VERSION_FILE | cut -d= -f2)
 
     VERSION_NEW=$(( $VERSION_OLD + 1 ))
-    DATE_NEW=`date +%Y%m%d`
+    DATE_NEW=$(date +%Y%m%d)
 
     perl -i -pe "s/(^[A-Z]*_BUILDVERSION_BUILDNR)=.*/\1=$VERSION_NEW/" $VERSION_FILE
     perl -i -pe "s/(^[A-Z]*_BUILDVERSION_DATE)=.*/\1=$DATE_NEW/" $VERSION_FILE
