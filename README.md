@@ -33,7 +33,7 @@ was previously installed to "seed" the system), or
 
 2. As a shell bundle.
 
-Building a shell bundle is a superset of of setting up a system to
+Building a shell bundle is a superset of setting up a system to
 build a local RPM, so we will cover that first.
 
 #### Sudoers configuration
@@ -74,7 +74,7 @@ Libboost is not a runtime dependency. It is only needed to build and run the OMS
 
  When building a machine for ULINUX builds (such as CentOS 5.x), we suggest
  using the O/S distribution CD to install the packages. It's not as easy,
- but that's the only way to guarentee that packages aren't updated such that
+ but that's the only way to guarantee that packages aren't updated such that
  generated binaries are not backwards compatible. (See notes on building a
  shell bundle, elsewhere in this document.)
 
@@ -94,7 +94,7 @@ are generally upwards compatible when installed on newer Linux systems.
 A notable exception: We use the OpenSSL package, and we can't tell if
 we need OpenSSL v1.0.x or OpenSSL v1.1.x. As a result, we have a [special
 process](https://github.com/Microsoft/ostc-openssl/blob/master/README.md)
-to build both both versions of OpenSSL that we can link against.
+to build both versions of OpenSSL that we can link against.
 
 Once OpenSSL is set up, you need to configure omsagent to include the
 ```--enable-ulinux``` qualifier, like this:<br>```./configure --enable-ulinux``` 
@@ -118,7 +118,7 @@ properly for a much easier workflow.
 
 #### Preparing system tests
 
-**This section only aplies if you do not have read access to [OMS TestConfig](https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project**
+**This section only applies if you do not have read access to [OMS TestConfig](https://github.com/Microsoft/OMS-Agent-for-Linux-testconfig) project**
 
 System tests communicate with the server. They require keys which may
 not be published.  You may obtain your own keys for free by creating
