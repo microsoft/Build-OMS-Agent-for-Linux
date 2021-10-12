@@ -1,24 +1,23 @@
 <!-- 
 	This document has the OMSLinuxAgent VMExtension Ev2 deployment.
 	Read docs: https://msazure.visualstudio.com/One/_wiki/wikis/One.wiki/57531/EDPEv2-Onboarding-Guide
-	Sync-up with: https://msazure.visualstudio.com/One/_git/Mgmt-LogAnalytics-MMAVMExtension?path=%2Fsrc%2FExtension%2FExtensionInfo%2FExtensionInfo.Public.xml
+	Keep synced with WindowsOMS file: https://msazure.visualstudio.com/One/_git/Mgmt-LogAnalytics-MMAVMExtension?path=%2Fsrc%2FExtension%2FExtensionInfo
  -->
 <ExtensionInfo>
 	<ExtensionImage xmlns="http://schemas.microsoft.com/windowsazure">
-	    <ProviderNameSpace>Microsoft.EnterpriseCloud.Monitoring</ProviderNameSpace>
-	    <Type>OmsAgentForLinux</Type>
-	    <Version></Version>
-	    <Label>Microsoft Operations Management Suite Agent for Linux</Label>
+		<ProviderNameSpace>Microsoft.EnterpriseCloud.Monitoring</ProviderNameSpace>
+		<Type>OmsAgentForLinux</Type>
+		<Version></Version>
+		<Label>Microsoft Operations Management Suite Agent for Linux</Label>
 		<HostingResources>VmRole</HostingResources>
 		<MediaLink></MediaLink>
-	    <Description>OmsAgentForLinux</Description>
+		<Description>OmsAgentForLinux</Description>
 		<IsInternalExtension>true</IsInternalExtension>
 		<Eula>https://github.com/microsoft/OMS-Agent-for-Linux/blob/master/LICENSE</Eula>
 		<PrivacyUri>http://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx</PrivacyUri>
 		<HomepageUri>https://github.com/Microsoft/OMS-Agent-for-Linux</HomepageUri>
 		<IsJsonExtension>true</IsJsonExtension>
-	    <!-- Windows or Linux -->
-	    <SupportedOS>Linux</SupportedOS>
+		<SupportedOS>Linux</SupportedOS>
 		<CompanyName>Microsoft</CompanyName>
 	</ExtensionImage>
 	<PipelineConfig>
@@ -27,18 +26,10 @@
 		<ExtensionIsAlwaysInternal>false</ExtensionIsAlwaysInternal>
 	</PipelineConfig>
 	<CloudTypes>
-	    <Public>
+		<Public>
 			<SubscriptionId>306ee7f1-3d0a-4605-9f39-ff253cc02708</SubscriptionId>
-			<AzureResourceGroupName>TBD</AzureResourceGroupName>
-			<AzureLocation>Southeast Asia</AzureLocation>
-			<ClassicStorageAccountName>mmawinextpubclassicsa</ClassicStorageAccountName>
-			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
-			<StorageAccountEndpointSuffix>blob.core.windows.net</StorageAccountEndpointSuffix>
-			<KVClassicStorageConnection>https://mmawinpublishing-kv.vault.azure.net/secrets/ClassicSA</KVClassicStorageConnection>
-			<AuthenticationType>AppIdWithCert</AuthenticationType>
-			<KVPathForAppCert>https://mmawinpublishing-kv.vault.azure.net/secrets/MMAWinExt-Publishing</KVPathForAppCert>
-			<TenantId>33e01921-4d64-4f8c-a055-5bdaffd5e33d</TenantId>			
-			<ApplicationId>27cb8c6d-067a-4081-87a2-89c27abef44b</ApplicationId>
+			<AzureLocation>South Central US</AzureLocation>
+			<AzureResourceGroupName>OmsAgentForLinux</AzureResourceGroupName>
 			<SDPRegions>
 				<Stage1>Central US EUAP</Stage1>
 				<Stage2>Central US EUAP;East US 2 EUAP</Stage2>
@@ -55,11 +46,11 @@
 			<SubscriptionId>357ae9bc-0e22-4155-bfdb-c08b9b4d2290</SubscriptionId>
 			<AzureResourceGroupName>TBD</AzureResourceGroupName>
 			<AzureLocation>USGov Texas</AzureLocation>
-			<ClassicStorageAccountName>omsextensions</ClassicStorageAccountName>
 			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
+			<ClassicStorageAccountName>omsextensions</ClassicStorageAccountName>
 			<StorageAccountEndpointSuffix>blob.core.usgovcloudapi.net</StorageAccountEndpointSuffix>
 			<KVClassicStorageConnection>https://mmawinpublishing-kv.vault.usgovcloudapi.net/secrets/ClassicSA</KVClassicStorageConnection>
-            <AuthenticationType>AppIdWithCert</AuthenticationType>
+			<AuthenticationType>AppIdWithCert</AuthenticationType>
 			<KVPathForAppCert>https://mmawinpublishing-kv.vault.usgovcloudapi.net/secrets/MMAWinExt-Publishing</KVPathForAppCert>
 			<TenantId>cab8a31a-1906-4287-a0d8-4eef66b95f6e</TenantId>
 			<ApplicationId>d1c87fe1-570b-4023-a1c3-44882d02f521</ApplicationId>
@@ -73,56 +64,49 @@
 		</Fairfax>
 		<Mooncake>
 			<SubscriptionId>6190886b-3bf8-4c04-9e8b-249b54ab91ff</SubscriptionId>
-            <AzureResourceGroupName>mooncakepublish</AzureResourceGroupName>
-            <AzureLocation>china north</AzureLocation>
-            <ClassicStorageAccountName>mdsmcwad</ClassicStorageAccountName>
-            <ClassicContainerName>omslinuxagentblob</ClassicContainerName>
-            <StorageAccountEndpointSuffix>blob.core.chinacloudapi.cn</StorageAccountEndpointSuffix>
-            <KVClassicStorageConnection>https://extensionpublishkv.vault.azure.cn/secrets/ExtensionPublishingMooncake/427424ba54fe41209675b31cfdd5d740</KVClassicStorageConnection>
-            <AuthenticationType>AppIdWithCert</AuthenticationType>
-            <KVPathForAppCert>https://extensionpublishkv.vault.azure.cn/secrets/GenevaAgentExtension</KVPathForAppCert>
-            <TenantId>a55a4d5b-9241-49b1-b4ff-befa8db00269</TenantId>
-            <ApplicationId>3be67e0e-9984-48e1-b6f7-03a0a2922375</ApplicationId>
+			<AzureResourceGroupName>TBD</AzureResourceGroupName>
+			<AzureLocation>China North</AzureLocation>
+			<ClassicStorageAccountName>mdsmcwad</ClassicStorageAccountName>
+			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
+			<StorageAccountEndpointSuffix>blob.core.chinacloudapi.cn</StorageAccountEndpointSuffix>
+			<KVClassicStorageConnection>https://extensionpublishkv.vault.azure.cn/secrets/ExtensionPublishingMooncake</KVClassicStorageConnection>
+			<AuthenticationType>AppIdWithCert</AuthenticationType>
+			<KVPathForAppCert>https://extensionpublishkv.vault.azure.cn/secrets/GenevaAgentExtension</KVPathForAppCert>
+			<TenantId>a55a4d5b-9241-49b1-b4ff-befa8db00269</TenantId>
+			<ApplicationId>3be67e0e-9984-48e1-b6f7-03a0a2922375</ApplicationId>
 			<SDPRegions>
 				<Stage1>China North</Stage1>
-				<Stage2>China North;China North 2</Stage2>
-				<Stage3>China North;China North 2;China East</Stage3>
-				<Stage4>China North;China North 2;China East;China East 2</Stage4>
+				<Stage2>China North;China East;</Stage2>
+				<Stage3>China North;China East;China North 2;China East 2</Stage3>
 			</SDPRegions>
 		</Mooncake>
 		<USNat>
 			<SubscriptionId>f7c1d98b-c0f1-40e3-8a34-28db0f94e058</SubscriptionId>
 			<AzureResourceGroupName>TBD</AzureResourceGroupName>
-			<AzureLocation>usnat east</AzureLocation>
-			<ClassicStorageAccountName>wadclassicstorage</ClassicStorageAccountName>
-            <ClassicContainerName>omslinuxagentblob</ClassicContainerName>
-            <StorageAccountEndpointSuffix>blob.core.eaglex.ic.gov</StorageAccountEndpointSuffix>
-            <KVClassicStorageConnection>https://genevamds.vault.cloudapi.eaglex.ic.gov/secrets/Wadsecret/a4cd10ea4c7f4436ab3a4d250cf79a64</KVClassicStorageConnection>
-			<AuthenticationType>AppIdWithCert</AuthenticationType>
-			<KVPathForAppCert>https://genevamds.vault.cloudapi.eaglex.ic.gov/secrets/Genevacert</KVPathForAppCert>
-			<TenantId>70a90262-f46c-48aa-ac4c-37e37f8be1a2</TenantId>
-			<ApplicationId>0bf7500a-cbad-4d00-899c-620d8ae1f51f</ApplicationId>
-            <SDPRegions>
-                <Stage1>usnat east</Stage1>
-                <Stage2>usnat east;usnat west</Stage2>
-            </SDPRegions>
+			<AzureLocation>USNat East</AzureLocation>
+			<KVPathForCertSecret>https://mmawinpublishing-kv.vault.cloudapi.eaglex.ic.gov/secrets/MMAWinExt-Publishing</KVPathForCertSecret>
+			<ClassicStorageAccountName>mmawinextexclassicsa</ClassicStorageAccountName>
+			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
+			<StorageAccountEndpointSuffix>blob.core.eaglex.ic.gov</StorageAccountEndpointSuffix>
+			<KVClassicStorageConnection>https://mmawinpublishing-kv.vault.cloudapi.eaglex.ic.gov/secrets/ClassicSA</KVClassicStorageConnection>
+			<SDPRegions>
+				<Stage1>USNat East</Stage1>
+				<Stage2>USNat East;USNat West</Stage2>
+			</SDPRegions>
 		</USNat>
 		<USSec>
 			<SubscriptionId>3ea3cc79-5387-440a-b5db-8b9c68c71e84</SubscriptionId>
-            <AzureResourceGroupName>TBD</AzureResourceGroupName>
-            <AzureLocation>ussec east</AzureLocation>
-            <ClassicStorageAccountName>wadrxpublishing</ClassicStorageAccountName>
-            <ClassicContainerName>omslinuxagentblob</ClassicContainerName>
-            <StorageAccountEndpointSuffix>blob.core.microsoft.scloud</StorageAccountEndpointSuffix>
-            <KVClassicStorageConnection>https://wadrxkv.cloudapi.microsoft.scloud/secrets/GenvaAgent/ed6c086eaa0451e845f2c10271ee552</KVClassicStorageConnection>
-            <AuthenticationType>AppIdWithCert</AuthenticationType>
-            <KVPathForAppCert>https://wadrxkv.vault.cloudapi.microsoft.scloud/secrets/publishingwadcert</KVPathForAppCert>
-            <TenantId>20ac2fc4-effc-4f76-ba7d-63c5ae134f5f</TenantId>
-            <ApplicationId>a8b6495d-6bc2-4d1a-9c0c-88af63c51d76</ApplicationId>
-            <SDPRegions>
-                <Stage1>ussec east</Stage1>
-                <Stage2>ussec east;ussec west</Stage2>
-            </SDPRegions>
+			<AzureResourceGroupName>TBD</AzureResourceGroupName>
+			<AzureLocation>USSec East</AzureLocation>
+			<KVPathForCertSecret>https://mmawinpublishing-kv.vault.cloudapi.microsoft.scloud/secrets/MMAWinExt-Publishing</KVPathForCertSecret>
+			<ClassicStorageAccountName>mmawinextrxclassicsa</ClassicStorageAccountName>
+			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
+			<StorageAccountEndpointSuffix>blob.core.microsoft.scloud</StorageAccountEndpointSuffix>
+			<KVClassicStorageConnection>https://mmawinpublishing-kv.vault.cloudapi.microsoft.scloud/secrets/ClassicSA</KVClassicStorageConnection>
+			<SDPRegions>
+				<Stage1>USSec East</Stage1>
+				<Stage2>USSec East;USSec West</Stage2>
+			</SDPRegions>
 		</USSec>
 	</CloudTypes>
 </ExtensionInfo>
