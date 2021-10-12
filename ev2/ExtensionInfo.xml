@@ -5,20 +5,19 @@
  -->
 <ExtensionInfo>
 	<ExtensionImage xmlns="http://schemas.microsoft.com/windowsazure">
-	    <ProviderNameSpace>Microsoft.EnterpriseCloud.Monitoring</ProviderNameSpace>
-	    <Type>OmsAgentForLinux</Type>
-	    <Version></Version>
-	    <Label>Microsoft Operations Management Suite Agent for Linux</Label>
+		<ProviderNameSpace>Microsoft.EnterpriseCloud.Monitoring</ProviderNameSpace>
+		<Type>OmsAgentForLinux</Type>
+		<Version></Version>
+		<Label>Microsoft Operations Management Suite Agent for Linux</Label>
 		<HostingResources>VmRole</HostingResources>
 		<MediaLink></MediaLink>
-	    <Description>OmsAgentForLinux</Description>
+		<Description>OmsAgentForLinux</Description>
 		<IsInternalExtension>true</IsInternalExtension>
 		<Eula>https://github.com/microsoft/OMS-Agent-for-Linux/blob/master/LICENSE</Eula>
 		<PrivacyUri>http://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx</PrivacyUri>
 		<HomepageUri>https://github.com/Microsoft/OMS-Agent-for-Linux</HomepageUri>
 		<IsJsonExtension>true</IsJsonExtension>
-	    <!-- Windows or Linux -->
-	    <SupportedOS>Linux</SupportedOS>
+		<SupportedOS>Linux</SupportedOS>
 		<CompanyName>Microsoft</CompanyName>
 	</ExtensionImage>
 	<PipelineConfig>
@@ -27,18 +26,10 @@
 		<ExtensionIsAlwaysInternal>false</ExtensionIsAlwaysInternal>
 	</PipelineConfig>
 	<CloudTypes>
-	    <Public>
+		<Public>
 			<SubscriptionId>306ee7f1-3d0a-4605-9f39-ff253cc02708</SubscriptionId>
-            <AzureLocation>East US</AzureLocation>
-			<AzureResourceGroupName>MMAWinExtPublish</AzureResourceGroupName>
-			<ClassicStorageAccountName>mmawinextpubclassicsa</ClassicStorageAccountName>
-			<ClassicContainerName>omslinuxagentblob</ClassicContainerName>
-			<StorageAccountEndpointSuffix>blob.core.windows.net</StorageAccountEndpointSuffix>
-			<KVClassicStorageConnection>https://mmawinpublishing-kv.vault.azure.net/secrets/ClassicSA</KVClassicStorageConnection>
-			<AuthenticationType>AppIdWithCert</AuthenticationType>
-			<KVPathForAppCert>https://mmawinpublishing-kv.vault.azure.net/secrets/MMAWinExt-Publishing</KVPathForAppCert>
-			<TenantId>33e01921-4d64-4f8c-a055-5bdaffd5e33d</TenantId>
-			<ApplicationId>27cb8c6d-067a-4081-87a2-89c27abef44b</ApplicationId>
+			<AzureLocation>South Central US</AzureLocation>
+			<AzureResourceGroupName>OmsAgentForLinux</AzureResourceGroupName>
 			<SDPRegions>
 				<Stage1>Central US EUAP</Stage1>
 				<Stage2>Central US EUAP;East US 2 EUAP</Stage2>
