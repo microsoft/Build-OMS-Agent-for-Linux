@@ -55,8 +55,18 @@ cd ${SOURCE_DIR}/azure-linux-extensions/OmsAgent
 echo "Creating Ev2 artifacts"
 cd ${SOURCE_DIR}
 
-mkdir -p ${OUTPUT_DIR}/ev2/RDFE
 mkdir -p ${OUTPUT_DIR}/ev2/ARM
+mkdir -p ${OUTPUT_DIR}/ev2/RDFE
+
+echo "Creating Ev2 artifacts for ARM-based publishing"
+pwsh ${SOURCE_DIR}/ev2/EV2ArtifactsGenerator.ps1 -outputDir ${OUTPUT_DIR}/ev2/ARM -ExtensionInfoFile ${SOURCE_DIR}/ev2/ExtensionInfo_ARM.xml -PackageFile ${OUTPUT_DIR}/oms${OMS_EXTENSION_VERSION}.zip -BuildVersion ${OMS_EXTENSION_VERSION} -UseBuildVersionForExtnVersion
+
+EX=$?
+if [ "$EX" -ne "0" ]; then
+  popd
+  echo "Command 'pwsh ${SOURCE_DIR}/ev2/EV2ArtifactsGenerator.ps1 ...' failed with exit code $EX."
+  exit $EX
+fi
 
 echo "Creating Ev2 artifacts for RDFE-based publishing"
 pwsh ${SOURCE_DIR}/ev2/EV2VMExtnPackager.ps1 -outputDir ${OUTPUT_DIR}/ev2/RDFE -ExtensionInfoFile ${SOURCE_DIR}/ev2/ExtensionInfo_RDFE.xml -BuildVersion ${OMS_EXTENSION_VERSION} -UseBuildVersionForExtnVersion -ReplaceBuildVersionInFileName
@@ -72,23 +82,13 @@ fi
 # Only necessary for EV2VMExtnPackager; EV2ArtifactsGenerator takes the .zip path as a param and places it in ServiceGroupRoot
 mv ${OUTPUT_DIR}/oms${OMS_EXTENSION_VERSION}.zip ${OUTPUT_DIR}/ev2/RDFE/ServiceGroupRoot/
 
-echo "Creating Ev2 artifacts for ARM-based publishing"
-pwsh ${SOURCE_DIR}/ev2/EV2ArtifactsGenerator.ps1 -outputDir ${OUTPUT_DIR}/ev2/ARM -ExtensionInfoFile ${SOURCE_DIR}/ev2/ExtensionInfo_ARM.xml -PackageFile ${OUTPUT_DIR}/oms${OMS_EXTENSION_VERSION}.zip -BuildVersion ${OMS_EXTENSION_VERSION} -UseBuildVersionForExtnVersion
-
-EX=$?
-if [ "$EX" -ne "0" ]; then
-  popd
-  echo "Command 'pwsh ${SOURCE_DIR}/ev2/EV2ArtifactsGenerator.ps1 ...' failed with exit code $EX."
-  exit $EX
-fi
-
 tree -f ${OUTPUT_DIR}/
 
 # Check exit code and exit with it if it is non-zero so that build will fail
 EX=$?
 if [ "$EX" -ne "0" ]; then
   popd
-  echo "Packaging failed with exit code $EX".
+  echo "Packaging failed with exit code $EX."
   exit $EX
 fi
 
