@@ -41,11 +41,10 @@
             <AzureResourceGroupName>OmsAgentForLinux</AzureResourceGroupName>
             <AzureLocation>USGov Virginia</AzureLocation>
             <SDPRegions>
-                <Stage1>USGov Texas</Stage1>
-                <Stage2>USGov Texas;USDoD Central</Stage2>
-                <Stage3>USGov Texas;USDoD Central;USDoD East</Stage3>
-                <Stage4>USGov Texas;USDoD Central;USDoD East;USGov Arizona</Stage4>
-                <Stage5>USGov Texas;USDoD Central;USDoD East;USGov Arizona;USGov Virginia</Stage5>
+                <Stage1>USDoD Central</Stage1>
+                <Stage2>USDoD Central;USDoD East</Stage2>
+                <Stage3>USDoD Central;USDoD East;USGov Virginia</Stage3>
+                <Stage4>USDoD Central;USDoD East;USGov Virginia;USGov Texas;USGov Arizona</Stage4>
             </SDPRegions>
         </Fairfax>
         <Mooncake>
@@ -54,8 +53,9 @@
             <AzureLocation>China North</AzureLocation>
             <SDPRegions>
                 <Stage1>China North</Stage1>
-                <Stage2>China North;China East;</Stage2>
-                <Stage3>China North;China East;China North 2;China East 2</Stage3>
+                <Stage2>China North;China North 2</Stage2>
+                <Stage3>China North;China North 2;China East</Stage3>
+                <Stage4>China North;China North 2;China East;China East 2</Stage4>
             </SDPRegions>
         </Mooncake>
         <USNat>
