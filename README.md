@@ -74,7 +74,7 @@ Libboost is not a runtime dependency. It is only needed to build and run the OMS
 
  When building a machine for ULINUX builds (such as CentOS 5.x), we suggest
  using the O/S distribution CD to install the packages. It's not as easy,
- but that's the only way to guarentee that packages aren't updated such that
+ but that's the only way to guarantee that packages aren't updated such that
  generated binaries are not backwards compatible. (See notes on building a
  shell bundle, elsewhere in this document.)
 
