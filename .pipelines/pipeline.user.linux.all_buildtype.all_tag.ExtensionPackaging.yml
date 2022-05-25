@@ -6,7 +6,7 @@ environment:
     version: '16.04'
   runtime:
     provider: 'appcontainer'
-    image: 'cdpxlinux.azurecr.io/user/geneva/oms-centos6-x64:1.0'
+    image: 'cdpxlinux.azurecr.io/global/ubuntu-1804-all:1.0'
     source_mode: 'link'
 
 # The following is a metadata section that describes the versioning scheme and basic version datacenter to use. This data will be used to
@@ -40,6 +40,7 @@ versioning:
       command: 'pipeline-version.sh'
 
 workspace_options:
+  download_current_artifacts: true
   force_workspace_wipe: false
   enable_legacy_networking: true
 
@@ -49,15 +50,18 @@ restore:
   commands:
     - !!defaultcommand
       name: 'Install'
-      command: 'pipeline-install.sh'
+      command: 'pipeline-extension-packaging-restore.sh'
 
 build:
   commands:
     - !!buildcommand
       name: 'Build'
-      command: 'pipeline-build.sh'
+      command: 'pipeline-extension-packaging.sh'
       artifacts:
-        - from: 'omsagent/target'
+        - from: 'pipeline-extension-packaging'
           to: 'buildoutput'
           include:
             - '**/*'
+
+package:
+  commands:

@@ -18,10 +18,6 @@
 	path = dsc
 	url = ../../microsoft/PowerShell-DSC-for-Linux.git
 	branch = master
-[submodule "auoms"]
-	path = auoms
-	url = ../../microsoft/OMS-Auditd-Plugin.git
-	branch = master
 [submodule "scxcore-kits"]
 	path = scxcore-kits
 	url = ../../microsoft/SCXcore-kits.git
