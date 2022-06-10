@@ -1,0 +1,44 @@
+{
+    "Registrations": [
+        {
+            "Component": {
+                "Type": "git",
+                "git": {
+                    "RepositoryUrl": "https://github.com/microsoft/PowerShell-DSC-for-Linux.git",
+                    "CommitHash": "ef1f5acebeea243936951f4e5ec70006f375ae85"
+                }
+            },
+            "DevelopmentDependency": false
+        },
+        {
+            "Component": {
+                "Type": "git",
+                "git": {
+                    "RepositoryUrl": "https://github.com/microsoft/OMS-Auditd-Plugin.git",
+                    "CommitHash": "a6b35d06e5fb0675f5ee16d8c600b0d7963a9198"
+                }
+            },
+            "DevelopmentDependency": false
+        },
+        {
+            "Component": {
+                "Type": "git",
+                "git": {
+                    "RepositoryUrl": "https://github.com/microsoft/omi.git",
+                    "CommitHash": "e80263a1b415b1491c422d05e5fe95bf60390842"
+                }
+            },
+            "DevelopmentDependency": false
+        },
+        {
+            "Component": {
+                "Type": "git",
+                "git": {
+                    "RepositoryUrl": "https://github.com/microsoft/pal.git",
+                    "CommitHash": "2fcc627c2830128d1a8864add2e3626d7d5a68c0"
+                }
+            },
+            "DevelopmentDependency": false
+        }
+    ]
+}
