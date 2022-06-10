@@ -29,6 +29,16 @@
                 }
             },
             "DevelopmentDependency": false
+        },
+        {
+            "Component": {
+                "Type": "git",
+                "git": {
+                    "RepositoryUrl": "https://github.com/microsoft/pal.git",
+                    "CommitHash": "2fcc627c2830128d1a8864add2e3626d7d5a68c0"
+                }
+            },
+            "DevelopmentDependency": false
         }
     ]
 }
