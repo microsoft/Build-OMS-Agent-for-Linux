@@ -25,7 +25,7 @@
             <AzureResourceGroupName>OmsAgentForLinux</AzureResourceGroupName>
             <AzureLocation>South Central US</AzureLocation>
             <SDPRegions>
-                <Stage1>Central US EUAP;East US 2 EUAP</Stage1>
+                <Stage1>Central US EUAP</Stage1>
                 <Stage2>Central US EUAP;East US 2 EUAP</Stage2>
                 <Stage3>Central US EUAP;East US 2 EUAP;West Central US</Stage3>
                 <Stage4>Central US EUAP;East US 2 EUAP;West Central US;North Central US</Stage4>
