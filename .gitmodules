@@ -28,6 +28,3 @@
 [submodule "auoms-kits"]
 	path = auoms-kits
 	url = ../../microsoft/auoms-kits.git
-[submodule "dsc-kits"] 
-	path = dsc-kits 
-	url = ../../shpimpal/dsc-kits.git
