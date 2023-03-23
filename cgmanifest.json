@@ -1,54 +1,55 @@
 {
-    "Registrations": [
-        {
-            "Component": {
-                "Type": "git",
-                "git": {
-                    "RepositoryUrl": "https://github.com/microsoft/PowerShell-DSC-for-Linux.git",
-                    "CommitHash": "ef1f5acebeea243936951f4e5ec70006f375ae85"
-                }
-            },
-            "DevelopmentDependency": false
-        },
-        {
-            "Component": {
-                "Type": "git",
-                "git": {
-                    "RepositoryUrl": "https://github.com/microsoft/OMS-Auditd-Plugin.git",
-                    "CommitHash": "a6b35d06e5fb0675f5ee16d8c600b0d7963a9198"
-                }
-            },
-            "DevelopmentDependency": false
-        },
-        {
-            "Component": {
-                "Type": "git",
-                "git": {
-                    "RepositoryUrl": "https://github.com/microsoft/omi.git",
-                    "CommitHash": "32a26de4b1ee8f6f958f5519904cc13ad50a703d"
-                }
-            },
-            "DevelopmentDependency": false
-        },
-        {
-            "Component": {
-                "Type": "git",
-                "git": {
-                    "RepositoryUrl": "https://github.com/microsoft/SCXcore",
-                    "CommitHash": "ce0c085cf529618cf1d63ad6d58710ca3595ccce"
-                }
-            },
-            "DevelopmentDependency": false
+  "$schema": "https://json.schemastore.org/component-detection-manifest.json",
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "git",
+        "git": {
+          "RepositoryUrl": "https://github.com/microsoft/PowerShell-DSC-for-Linux.git",
+          "CommitHash": "ef1f5acebeea243936951f4e5ec70006f375ae85"
         }
-        {
-            "Component": {
-                "Type": "git",
-                "git": {
-                    "RepositoryUrl": "https://github.com/microsoft/pal.git",
-                    "CommitHash": "2fcc627c2830128d1a8864add2e3626d7d5a68c0"
-                }
-            },
-            "DevelopmentDependency": false
+      },
+      "DevelopmentDependency": false
+    },
+    {
+      "Component": {
+        "Type": "git",
+        "git": {
+          "RepositoryUrl": "https://github.com/microsoft/OMS-Auditd-Plugin.git",
+          "CommitHash": "a6b35d06e5fb0675f5ee16d8c600b0d7963a9198"
         }
-    ]
+      },
+      "DevelopmentDependency": false
+    },
+    {
+      "Component": {
+        "Type": "git",
+        "git": {
+          "RepositoryUrl": "https://github.com/microsoft/omi.git",
+          "CommitHash": "32a26de4b1ee8f6f958f5519904cc13ad50a703d"
+        }
+      },
+      "DevelopmentDependency": false
+    },
+    {
+      "Component": {
+        "Type": "git",
+        "git": {
+          "RepositoryUrl": "https://github.com/microsoft/SCXcore",
+          "CommitHash": "ce0c085cf529618cf1d63ad6d58710ca3595ccce"
+        }
+      },
+      "DevelopmentDependency": false
+    },
+    {
+      "Component": {
+        "Type": "git",
+        "git": {
+          "RepositoryUrl": "https://github.com/microsoft/pal.git",
+          "CommitHash": "2fcc627c2830128d1a8864add2e3626d7d5a68c0"
+        }
+      },
+      "DevelopmentDependency": false
+    }
+  ]
 }
