@@ -6,7 +6,7 @@
         "Type": "git",
         "git": {
           "RepositoryUrl": "https://github.com/microsoft/PowerShell-DSC-for-Linux.git",
-          "CommitHash": "679aa36bf0c3cf5bfc3bab5f58437eecb593b69e"
+          "CommitHash": "532a2bc62f36359cb97158a4250229fa1dabe6eb"
         }
       },
       "DevelopmentDependency": false
