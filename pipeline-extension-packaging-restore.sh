@@ -25,3 +25,6 @@ pwsh --version
 
 echo Cloning azure-linux-extensions ...
 git clone --recursive https://github.com/Azure/azure-linux-extensions.git $SOURCE_DIR/azure-linux-extensions
+cd $SOURCE_DIR/azure-linux-extensions
+git checkout OMSAgent_v1.17.0
+git submodule update --init --recursive
