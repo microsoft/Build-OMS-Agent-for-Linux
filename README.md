@@ -1,6 +1,6 @@
 # [DEPRECATED] Operations Management Suite Linux Agent
 
-> :warning: The Log Analytics agent has been **deprecatated** and has no support as of **August 31, 2024.** If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate now to the new Azure Monitor agent](https://docs.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-migration).
+> :warning: The Log Analytics agent has been **deprecated** and has no support as of **August 31, 2024.** If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate now to the new Azure Monitor agent](https://docs.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-migration).
 >
 
 ## Table of Contents
